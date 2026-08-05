@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "960644674168",
+    "project_id": "blocauthapp-9309e",
+    "storage_bucket": "blocauthapp-9309e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960644674168:android:99d75f22db06c76dd1b38d",
+        "android_client_info": {
+          "package_name": "com.example.network_state"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB81pOEex85u_zR3o4IWEr7wdSdS3rdBaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
