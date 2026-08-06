@@ -7,7 +7,7 @@ class Diosource {
   Diosource._internal()
     : dio = Dio(
         BaseOptions(
-          baseUrl: "https://jsonplaceholder.typicode.com/",
+          baseUrl: "https://jsonplaceholder.typicode.co/",
           connectTimeout: Duration(seconds: 10),
           receiveTimeout: Duration(seconds: 5),
           sendTimeout: Duration(seconds: 10)
