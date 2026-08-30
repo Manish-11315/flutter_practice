@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_project_practice/api_app/presentation/bloc/userBloc.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_states.dart';
 
 import '../widget/usersdatalist_widget.dart';
+
 class Displayuserlistscreen extends StatelessWidget {
   const Displayuserlistscreen({super.key});
 
@@ -14,27 +16,32 @@ class Displayuserlistscreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            BlocConsumer(
-                builder: (context, state){
-                  if(state is loadingUserBloc){
-                    return Center(child: CircularProgressIndicator());
-                  }else if(state is listAllUserdataUserBloc){
-                    final datacount = state.userentity.length;
-                    ListView.builder(
-                        itemCount: datacount,
-                      itemBuilder: (BuildContext context, int index) {
-                          final datauser = index
-                        return UsersdatalistWidget(userId: index, id: index, title: index, iscompleted: index,);
-                      },
-
-                    );
-                  }
-                  return Container();
-                },
-                listener: (context, state){
-
+            BlocConsumer<Userbloc, UserblocStates>(
+              builder: (context, state) {
+                if (state is loadingUserBloc) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (state is listAllUserdataUserBloc) {
+                  final datacount = state.userentity.length;
+                  return ListView.builder(
+                    itemCount: datacount,
+                    itemBuilder: (BuildContext context, int index) {
+                      final datauser = state.userentity[index];
+                      return UsersdatalistWidget(
+                        userId: datauser.userId,
+                        id: datauser.id,
+                        title: datauser.title,
+                        iscompleted: datauser.completed,
+                      );
+                    },
+                  );
+                }else if(state is errorUserBloc){
+                  return Text("An error occurred : ${state.errormsg}");
                 }
-            )
+                return Container(child: 
+                  Text("New data is not coming"),);
+              },
+              listener: (context, state) {},
+            ),
           ],
         ),
       ),
