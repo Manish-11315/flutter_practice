@@ -11,7 +11,12 @@ class errorUserBloc extends UserblocStates{
   errorUserBloc({required this.errormsg});
 }
 
-class dataUserBloc extends UserblocStates{
+class singleUserdataUserBloc extends UserblocStates{
   final Userentity userentity;
-  dataUserBloc({required this.userentity});
+  singleUserdataUserBloc({required this.userentity});
+}
+
+class listAllUserdataUserBloc extends UserblocStates{
+  final List<Userentity> userentity;
+  listAllUserdataUserBloc({required this.userentity});
 }

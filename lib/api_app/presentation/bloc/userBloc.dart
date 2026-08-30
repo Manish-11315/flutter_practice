@@ -23,7 +23,7 @@ class Userbloc extends Bloc<UserblocEvents, UserblocStates> {
       emit(loadingUserBloc());
     try {
       final data = await fetchsingleuserUsecase.call(id: event.id);
-      emit(dataUserBloc(userentity: data));
+      emit(singleUserdataUserBloc(userentity: data));
     } catch (err) {
       emit(errorUserBloc(errormsg: err.toString()));
     }
@@ -36,8 +36,7 @@ class Userbloc extends Bloc<UserblocEvents, UserblocStates> {
     emit(loadingUserBloc());
     try{
       final data = await fetchallusersUsecase.call();
-      final datalist = data.map((dataobj) => dataobj).toList();
-      emit(dataUserBloc(userentity: datalist));
+      emit(listAllUserdataUserBloc(userentity: data));
     }catch (err){
       emit(errorUserBloc(errormsg: err.toString()));
     }
