@@ -11,14 +11,19 @@ class UsersdatalistWidget extends StatelessWidget {
     return Container(
       decoration:  BoxDecoration(
         borderRadius: BorderRadius.circular(22),
+        color: Colors.redAccent
       ),
-      child: Column(
-        children: [
-          Text("UserID : $userId"),
-          Text("id : $id"),
-          Text("title : $title"),
-          Text("Completion Status : $iscompleted")
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("UserID : $userId"),
+            Text("id : $id"),
+            Text("title : $title"),
+            Text("Completion Status : $iscompleted")
+          ],
+        ),
       ),
     );
   }

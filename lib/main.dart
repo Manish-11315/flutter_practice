@@ -7,6 +7,7 @@ import 'package:flutter_project_practice/api_app/data/repo_impl/userRepoImpl.dar
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchallusers_usecase.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchsingleuser_usecase.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/userBloc.dart';
+import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_events.dart';
 import 'package:flutter_project_practice/connectivity_app/presentation/bloc/connectivity_bloc.dart';
 import 'package:flutter_project_practice/connectivity_app/presentation/screen/connectivity_homescreen.dart';
 
@@ -29,13 +30,13 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
 
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: MultiBlocProvider(providers: [
         BlocProvider(create: (context) => ConnectivityBloc()),
         BlocProvider(create: (context) => Userbloc(
             fetchsingleuserUsecase: FetchsingleuserUsecase(repoobj: userrepoimplobj),
-            fetchallusersUsecase: FetchallusersUsecase(userrepoobj: userrepoimplobj))
+            fetchallusersUsecase: FetchallusersUsecase(userrepoobj: userrepoimplobj))..add(getallusersdata_event())
         )
       ], child: Displayuserlistscreen()),
     );

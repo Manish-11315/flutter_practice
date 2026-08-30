@@ -16,31 +16,36 @@ class Displayuserlistscreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            BlocConsumer<Userbloc, UserblocStates>(
-              builder: (context, state) {
-                if (state is loadingUserBloc) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (state is listAllUserdataUserBloc) {
-                  final datacount = state.userentity.length;
-                  return ListView.builder(
-                    itemCount: datacount,
-                    itemBuilder: (BuildContext context, int index) {
-                      final datauser = state.userentity[index];
-                      return UsersdatalistWidget(
-                        userId: datauser.userId,
-                        id: datauser.id,
-                        title: datauser.title,
-                        iscompleted: datauser.completed,
-                      );
-                    },
-                  );
-                }else if(state is errorUserBloc){
-                  return Text("An error occurred : ${state.errormsg}");
-                }
-                return Container(child: 
-                  Text("New data is not coming"),);
-              },
-              listener: (context, state) {},
+            Expanded(
+              child: BlocConsumer<Userbloc, UserblocStates>(
+                builder: (context, state) {
+                  if (state is loadingUserBloc) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (state is listAllUserdataUserBloc) {
+                    final datacount = state.userentity.length;
+                    return ListView.builder(
+                      itemCount: datacount,
+                      itemBuilder: (BuildContext context, int index) {
+                        final datauser = state.userentity[index];
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: UsersdatalistWidget(
+                            userId: datauser.userId,
+                            id: datauser.id,
+                            title: datauser.title,
+                            iscompleted: datauser.completed,
+                          ),
+                        );
+                      },
+                    );
+                  }else if(state is errorUserBloc){
+                    return Text("An error occurred : ${state.errormsg}");
+                  }
+                  return Container(child:
+                    Text("New data is not coming"),);
+                },
+                listener: (context, state) {},
+              ),
             ),
           ],
         ),
