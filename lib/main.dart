@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => Userbloc(
             fetchsingleuserUsecase: FetchsingleuserUsecase(repoobj: userrepoimplobj),
             fetchallusersUsecase: FetchallusersUsecase(userrepoobj: userrepoimplobj))..add(getallusersdata_event())
-        )
+        ),
       ], child: Displayuserlistscreen()),
     );
   }
