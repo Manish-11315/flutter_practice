@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_project_practice/api_app/presentation/bloc/userBloc.dart';
+import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_states.dart';
+
+import '../bloc/userbloc_events.dart';
+import '../widget/usersdatalist_widget.dart';
+
 class Searchuserscreen extends StatelessWidget {
-  const Searchuserscreen({super.key});
+  final TextEditingController idcontroller = TextEditingController();
+
+  Searchuserscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -8,14 +17,60 @@ class Searchuserscreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            TextFormField(
-              decoration: InputDecoration(
-                border: InputBorder.none
-              ),
-            )
+            Text("This is new screen"),
+
+            BlocConsumer(
+              builder: (context, state) {
+                if (state is loadingUserBloc) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (state is errorUserBloc) {
+                  return Center(child: Text(state.errormsg));
+                } else if (state is singleUserdataUserBloc) {
+                  final userdata = state.userentity;
+                  return Center(
+                    child: UsersdatalistWidget(
+                      title: userdata.title,
+                      id: userdata.id,
+                      userId: userdata.userId,
+                      iscompleted: userdata.completed,
+                    ),
+                  );
+                }
+                return Column(
+                  children: [
+                    TextFormField(
+                      controller: idcontroller,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hint: Text("Enter ID Number to search"),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: (){
+                        _onButtonTap(context);
+                      }
+                      ,child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.redAccent
+                        ),
+                        child: Text("Search"),
+                      ),
+                    )
+                  ],
+                );
+              },
+              listener: (context, state) {},
+            ),
           ],
         ),
       ),
     );
+  }
+
+  void _onButtonTap(BuildContext context) {
+    final idreq = idcontroller.value as int;
+    BlocProvider.of<Userbloc>(context).add(loadsingleuser_event(id: idreq));
   }
 }

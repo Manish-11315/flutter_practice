@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/userBloc.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_states.dart';
-import 'package:flutter_project_practice/connectivity_app/presentation/bloc/connectivity_bloc.dart';
+import 'package:flutter_project_practice/api_app/presentation/screen/searchUserScreen.dart';
 
 import '../widget/usersdatalist_widget.dart';
 
@@ -16,11 +16,20 @@ class Displayuserlistscreen extends StatelessWidget {
         title: Text("API Data Fetch Application"),
         actions: [
           GestureDetector(
-            onTap: () async{
-              await Navigator.push(context, MaterialPageRoute(builder: (context) => Displayuserlistscreen()));
+            onTap: () async {
+              final userbloc = context.read<Userbloc>();
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BlocProvider.value(
+                    value: userbloc,
+                    child: Searchuserscreen(),
+                  ),
+                ),
+              );
             },
-              child: Icon(Icons.search)
-          )
+            child: Icon(Icons.search),
+          ),
         ],
       ),
       body: Center(
@@ -54,20 +63,12 @@ class Displayuserlistscreen extends StatelessWidget {
                             },
                           ),
                         ),
-                        GestureDetector(
-                            onTap: () async{
-                              await Navigator.push(context, MaterialPageRoute(builder: (context) => Displayuserlistscreen()));
-                            },
-                            child: Icon(Icons.search)
-                        )
                       ],
                     );
-
-                  }else if(state is errorUserBloc){
+                  } else if (state is errorUserBloc) {
                     return Text("An error occurred : ${state.errormsg}");
                   }
-                  return Container(child:
-                    Text("New data is not coming"),);
+                  return Container(child: Text("New data is not coming"));
                 },
                 listener: (context, state) {},
               ),
