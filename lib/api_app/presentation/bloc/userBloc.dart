@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_project_practice/api_app/domain/entities/userEntity.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchallusers_usecase.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchsingleuser_usecase.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_events.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_stat
 class Userbloc extends Bloc<UserblocEvents, UserblocStates> {
   final FetchallusersUsecase fetchallusersUsecase;
   final FetchsingleuserUsecase fetchsingleuserUsecase;
+  List<Userentity> usercache =[];
 
   Userbloc({
     required this.fetchsingleuserUsecase,
@@ -14,6 +16,8 @@ class Userbloc extends Bloc<UserblocEvents, UserblocStates> {
   }) : super(initialUserBloc()) {
     on<loadsingleuser_event>(_onSingleUserHandler);
     on<getallusersdata_event>(_onLoadAllUserHandler);
+    on<initialuserdata_event>(_oninitialUserHandler);
+    on<getdata_list_event>(_onresetlistHandler);
   }
 
   void _onSingleUserHandler(
@@ -36,9 +40,18 @@ class Userbloc extends Bloc<UserblocEvents, UserblocStates> {
     emit(loadingUserBloc());
     try{
       final data = await fetchallusersUsecase.call();
-      emit(listAllUserdataUserBloc(userentity: data));
+      usercache = data;
+      emit(listAllUserdataUserBloc(userentity: usercache));
     }catch (err){
       emit(errorUserBloc(errormsg: err.toString()));
     }
+  }
+
+  void _oninitialUserHandler(initialuserdata_event event, Emitter<UserblocStates> emit){
+    emit(initialUserBloc());
+  }
+
+  void _onresetlistHandler(getdata_list_event event, Emitter<UserblocStates> emit){
+    emit(listAllUserdataUserBloc(userentity: usercache));
   }
 }

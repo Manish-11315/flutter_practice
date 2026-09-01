@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/userBloc.dart';
+import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_events.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_states.dart';
 import 'package:flutter_project_practice/api_app/presentation/screen/searchUserScreen.dart';
 
@@ -18,6 +19,7 @@ class Displayuserlistscreen extends StatelessWidget {
           GestureDetector(
             onTap: () async {
               final userbloc = context.read<Userbloc>();
+              userbloc.add(initialuserdata_event());
               await Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -27,6 +29,7 @@ class Displayuserlistscreen extends StatelessWidget {
                   ),
                 ),
               );
+              userbloc.add(getdata_list_event());
             },
             child: Icon(Icons.search),
           ),
@@ -70,7 +73,9 @@ class Displayuserlistscreen extends StatelessWidget {
                   }
                   return Container(child: Text("New data is not coming"));
                 },
-                listener: (context, state) {},
+                listener: (context, state) {
+
+                },
               ),
             ),
           ],

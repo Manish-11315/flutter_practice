@@ -6,3 +6,7 @@ class loadsingleuser_event extends UserblocEvents{
 }
 
 class getallusersdata_event extends UserblocEvents{}
+
+class initialuserdata_event extends UserblocEvents{}
+
+class getdata_list_event extends UserblocEvents{}

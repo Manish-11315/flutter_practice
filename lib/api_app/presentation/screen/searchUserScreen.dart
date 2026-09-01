@@ -19,7 +19,7 @@ class Searchuserscreen extends StatelessWidget {
           children: [
             Text("This is new screen"),
 
-            BlocConsumer(
+            BlocConsumer<Userbloc, UserblocStates>(
               builder: (context, state) {
                 if (state is loadingUserBloc) {
                   return Center(child: CircularProgressIndicator());
@@ -70,7 +70,7 @@ class Searchuserscreen extends StatelessWidget {
   }
 
   void _onButtonTap(BuildContext context) {
-    final idreq = idcontroller.value as int;
+    final idreq = int.parse(idcontroller.text);
     BlocProvider.of<Userbloc>(context).add(loadsingleuser_event(id: idreq));
   }
 }
