@@ -48,15 +48,15 @@ class productsModel extends ProductsEntity {
       productId: json["product_id"],
       name: json["name"],
       description: json["description"],
-      price: json["price"],
+      price: (json["price"] as double).toDouble(),
       unit: json["unit"],
       imageUrl:  json["image"],
       discount: json["discount"],
-      availability: json["availability"],
+      availability: json["availability"] == true,
       brandname: json["brand"],
       catrgories: json["category"],
-      rating: json["rating"],
-      reviews: (json["reviews"] as List).map((r) => Reviewsmodel.fromJson(r as Map<String, dynamic>)).toList()
+      rating: (json["rating"] as double).toDouble(),
+      reviews: json["reviews"] ? [] : (json["reviews"] as List).map((r) => Reviewsmodel.fromJson(r as Map<String, dynamic>)).toList()
     );
   }
 }

@@ -11,7 +11,9 @@ class Userdatasource {
 
   Future<List<productsModel>> getAllUsersData() async{
     try{
-      final res = await dioinstance.get("products");
+      final res = await dioinstance.get("products/");
+      print("Response data: ${res.data}");        // see actual data
+      print("Status code: ${res.statusCode}");    // see status
       final datalist = res.data as List;
       return datalist.map((r) => productsModel.fromJson(r)).toList();
     }on DioException catch (dioerr){
@@ -23,7 +25,9 @@ class Userdatasource {
         throw Exception("Unhandled Dio Exception");
       }
     }catch (err){
-      throw Exception("Unhandled Exception");
+      print("====================== Error : $err");
+      throw Exception("Unhandled Exception : $err");
+
     }
   }
 
