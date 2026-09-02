@@ -56,7 +56,7 @@ class productsModel extends ProductsEntity {
       brandname: json["brand"],
       catrgories: json["category"],
       rating: (json["rating"] as double).toDouble(),
-      reviews: json["reviews"] ? [] : (json["reviews"] as List).map((r) => Reviewsmodel.fromJson(r as Map<String, dynamic>)).toList()
+      reviews: json["reviews"] == null ? [] : (json["reviews"] as List).map((r) => Reviewsmodel.fromJson(r as Map<String, dynamic>)).toList()
     );
   }
 }
