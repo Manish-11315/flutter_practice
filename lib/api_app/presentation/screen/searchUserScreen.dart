@@ -28,12 +28,9 @@ class Searchuserscreen extends StatelessWidget {
                 } else if (state is singleUserdataUserBloc) {
                   final userdata = state.userentity;
                   return Center(
-                    child: UsersdatalistWidget(
-                      title: userdata.title,
-                      id: userdata.id,
-                      userId: userdata.userId,
-                      iscompleted: userdata.completed,
-                    ),
+                    /*child: UsersdatalistWidget(
+                     products: state.,
+                    ),*/
                   );
                 }
                 return Column(

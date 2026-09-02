@@ -1,19 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_project_practice/api_app/data/datasources/diosource.dart';
-import 'package:flutter_project_practice/api_app/data/models/usermodel.dart';
-import 'package:flutter_project_practice/api_app/domain/entities/userEntity.dart';
+import 'package:flutter_project_practice/api_app/data/models/productsmodel.dart';
+import 'package:flutter_project_practice/api_app/domain/entities/productsEntity.dart';
 
 class Userdatasource {
 
   final Dio dioinstance;
   Userdatasource({required this.dioinstance});
 
-  Future<List<Usermodel>> getAllUsersData() async{
+  Future<List<productsModel>> getAllUsersData() async{
     try{
-      final res = await dioinstance.get("todos/");
+      final res = await dioinstance.get("products");
       final datalist = res.data as List;
-      return datalist.map((r) => Usermodel.fromJson(r)).toList();
+      return datalist.map((r) => productsModel.fromJson(r)).toList();
     }on DioException catch (dioerr){
       if(dioerr.type == DioExceptionType.connectionTimeout){
         throw Exception("Cannot Connect to the Server");
@@ -27,11 +27,11 @@ class Userdatasource {
     }
   }
 
-  Future<Usermodel> getSingleUserdata({required int id})async{
+  Future<productsModel> getSingleUserdata({required int id})async{
     try{
       final res = await dioinstance.get("todos/$id");
       final data = res.data;
-      return Usermodel.fromJson(data);
+      return productsModel.fromJson(data);
     }on DioException catch (dioerr){
       if(dioerr.type == DioExceptionType.connectionTimeout){
         throw Exception("Cannot Connect to the Server");

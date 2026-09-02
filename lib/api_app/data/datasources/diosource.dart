@@ -8,7 +8,7 @@ class Diosource{
 
   Diosource._internal() : dio = Dio(
     BaseOptions(
-      baseUrl: "https://jsonplaceholder.typicode.com/"
+      baseUrl: "https://fake-store-api.mock.beeceptor.com/api/"
     )
   );
 }

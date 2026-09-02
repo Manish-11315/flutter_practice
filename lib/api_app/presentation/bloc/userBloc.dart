@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_project_practice/api_app/domain/entities/userEntity.dart';
+import 'package:flutter_project_practice/api_app/domain/entities/productsEntity.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchallusers_usecase.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchsingleuser_usecase.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_events.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_stat
 class Userbloc extends Bloc<UserblocEvents, UserblocStates> {
   final FetchallusersUsecase fetchallusersUsecase;
   final FetchsingleuserUsecase fetchsingleuserUsecase;
-  List<Userentity> usercache =[];
+  List<ProductsEntity> usercache =[];
 
   Userbloc({
     required this.fetchsingleuserUsecase,

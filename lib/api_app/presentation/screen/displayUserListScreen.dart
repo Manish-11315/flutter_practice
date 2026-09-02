@@ -64,10 +64,7 @@ class Displayuserlistscreen extends StatelessWidget {
                                         return Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: UsersdatalistWidget(
-                                            userId: datauser.userId,
-                                            id: datauser.id,
-                                            title: datauser.title,
-                                            iscompleted: datauser.completed,
+                                           products: state.userentity,
                                           ),
                                         );
                                       },
