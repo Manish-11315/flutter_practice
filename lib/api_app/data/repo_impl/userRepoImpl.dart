@@ -1,5 +1,5 @@
 import 'package:flutter_project_practice/api_app/data/datasources/userDataSource.dart';
-import 'package:flutter_project_practice/api_app/domain/entities/productsEntity.dart';
+import 'package:flutter_project_practice/api_app/domain/entities/products_entities/productsEntity.dart';
 import 'package:flutter_project_practice/api_app/domain/repo/userRepo.dart';
 
 class Userrepoimpl extends Userrepo{

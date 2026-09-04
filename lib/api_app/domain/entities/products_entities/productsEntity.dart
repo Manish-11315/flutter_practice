@@ -1,4 +1,4 @@
-import 'package:flutter_project_practice/api_app/domain/entities/ratingEntity.dart';
+import 'package:flutter_project_practice/api_app/domain/entities/products_entities/ratingEntity.dart';
 
 class ProductsEntity {
   final int productId;

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_project_practice/api_app/data/datasources/diosource.dart';
-import 'package:flutter_project_practice/api_app/data/models/productsmodel.dart';
-import 'package:flutter_project_practice/api_app/domain/entities/productsEntity.dart';
+import 'package:flutter_project_practice/api_app/data/models/products_model/productsmodel.dart';
+import 'package:flutter_project_practice/api_app/domain/entities/products_entities/productsEntity.dart';
 
 class Userdatasource {
 

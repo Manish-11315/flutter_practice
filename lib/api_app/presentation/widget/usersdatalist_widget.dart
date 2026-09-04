@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_practice/api_app/domain/entities/productsEntity.dart';
+import 'package:flutter_project_practice/api_app/domain/entities/products_entities/productsEntity.dart';
 class UsersdatalistWidget extends StatelessWidget {
-  final List<ProductsEntity> products;
+  final ProductsEntity products;
   const UsersdatalistWidget({super.key , required this.products});
 
   @override
@@ -16,20 +16,24 @@ class UsersdatalistWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Product ID : ${products[0].productId}"),
-            Text("Name : ${products[0].name}"),
-            Text("Description : ${products[0].description}"),
-            Text("Price : ${products[0].price}"),
-            Text("Unit : ${products[0].unit}"),
-            Text("ImageUrl : ${products[0].imageUrl}"),
-            Text("Discount : ${products[0].discount}"),
-            Text("Availability : ${products[0].availability}"),
-            Text("Brandname : ${products[0].brandname}"),
-            Text("Categories : ${products[0].catrgories}"),
-            Text("Rating : ${products[0].rating}"),
-            Text("Reviews => User_id: ${products[0].reviews[0].userId}"),
-            Text("Reviews => Rating: ${products[0].reviews[0].rating}"),
-            Text("Reviews => Comment: ${products[0].reviews[0].comment}"),
+            Text("Product ID : ${products.productId}"),
+            Text("Name : ${products.name}"),
+            Text("Description : ${products.description}"),
+            Text("Price : ${products.price}"),
+            Text("Unit : ${products.unit}"),
+            Text("ImageUrl : ${products.imageUrl}"),
+            Text("Discount : ${products.discount}"),
+            Text("Availability : ${products.availability}"),
+            Text("Brandname : ${products.brandname}"),
+            Text("Categories : ${products.catrgories}"),
+            Text("Rating : ${products.rating}"),
+            if(products.reviews.isNotEmpty) ...[
+              Text("Reviews => User_id: ${products.reviews[0].userId}"),
+              Text("Reviews => Rating: ${products.reviews[0].rating}"),
+              Text("Reviews => Comment: ${products.reviews[0].comment}")
+            ]else
+              Text("No reviews yet")
+
           ],
         ),
       ),

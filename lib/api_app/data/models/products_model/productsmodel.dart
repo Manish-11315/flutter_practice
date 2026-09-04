@@ -1,5 +1,5 @@
-import 'package:flutter_project_practice/api_app/data/models/reviewsModel.dart';
-import 'package:flutter_project_practice/api_app/domain/entities/productsEntity.dart';
+import 'package:flutter_project_practice/api_app/data/models/products_model/reviewsModel.dart';
+import 'package:flutter_project_practice/api_app/domain/entities/products_entities/productsEntity.dart';
 
 class productsModel extends ProductsEntity {
   final int productId;

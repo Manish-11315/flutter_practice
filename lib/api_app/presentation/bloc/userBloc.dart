@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_project_practice/api_app/domain/entities/productsEntity.dart';
+import 'package:flutter_project_practice/api_app/domain/entities/products_entities/productsEntity.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchallusers_usecase.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchsingleuser_usecase.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_events.dart';

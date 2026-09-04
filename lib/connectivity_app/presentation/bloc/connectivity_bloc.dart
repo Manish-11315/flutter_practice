@@ -16,9 +16,9 @@ class ConnectivityBloc extends Bloc<ConnectivityEvents, ConnectivityStates>{
 
     // _connectivity.checkConnectivity().then((value) => _connectivity.onConnectivityChanged);
     
-    _connectivity.checkConnectivity().then((value){
+    /*_connectivity.checkConnectivity().then((value){
       toggleconnectivity(value);
-    });
+    });*/
     
     _streamSubscription = _connectivity.onConnectivityChanged.listen((change){
       toggleconnectivity(change);
