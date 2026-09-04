@@ -27,7 +27,7 @@ class OrderinfoModel extends OrderinfoEntity {
       orderId: json["order_id"],
       userId: json["user_id"],
       items: json["items"] == null ? json["No Data Found"] : (json["items"] as List).map((element) => IteminfoModel.fromJson(element)).toList(),
-      totalPrice: json["total_price"],
+      totalPrice: (json["total_price"] as double).toDouble(),
       shipped: json["status"],
     );
   }

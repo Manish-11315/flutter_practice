@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/userBloc.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_states.dart';
+import 'package:flutter_project_practice/api_app/presentation/widget/orderdatalist_widget.dart';
 
 import '../bloc/userbloc_events.dart';
 import '../widget/usersdatalist_widget.dart';
@@ -28,9 +29,7 @@ class Searchuserscreen extends StatelessWidget {
                 } else if (state is singleUserdataUserBloc) {
                   final userdata = state.userentity;
                   return Center(
-                    /*child: UsersdatalistWidget(
-                     products: state.,
-                    ),*/
+                    child: OrderdatalistWidget(orderinfoEntity: userdata),
                   );
                 }
                 return Column(

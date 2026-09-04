@@ -1,3 +1,4 @@
+import 'package:flutter_project_practice/api_app/domain/entities/order_entities/orderinfo_entity.dart';
 import 'package:flutter_project_practice/api_app/domain/entities/products_entities/productsEntity.dart';
 
 abstract class UserblocStates {}
@@ -12,7 +13,7 @@ class errorUserBloc extends UserblocStates{
 }
 
 class singleUserdataUserBloc extends UserblocStates{
-  final ProductsEntity userentity;
+  final OrderinfoEntity userentity;
   singleUserdataUserBloc({required this.userentity});
 }
 

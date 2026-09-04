@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_project_practice/api_app/data/datasources/diosource.dart';
+import 'package:flutter_project_practice/api_app/data/models/orders_model/orderinfo_model.dart';
 import 'package:flutter_project_practice/api_app/data/models/products_model/productsmodel.dart';
 import 'package:flutter_project_practice/api_app/domain/entities/products_entities/productsEntity.dart';
 
@@ -31,11 +32,12 @@ class Userdatasource {
     }
   }
 
-  Future<productsModel> getSingleUserdata({required int id})async{
+  Future<OrderinfoModel> getSingleUserdata({required int id})async{
     try{
-      final res = await dioinstance.get("todos/$id");
+      final res = await dioinstance.get("orders/status/?order_id=$id");
       final data = res.data;
-      return productsModel.fromJson(data);
+      print("response : ${res.data}");
+      return OrderinfoModel.fromJson(data);
     }on DioException catch (dioerr){
       if(dioerr.type == DioExceptionType.connectionTimeout){
         throw Exception("Cannot Connect to the Server");
