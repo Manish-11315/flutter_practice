@@ -14,7 +14,7 @@ class Userrepoimpl extends Userrepo{
   }
 
   @override
-  Future<OrderinfoEntity> getsingleOrderdata({required int id}) {
+  Future<List<OrderinfoEntity>> getsingleOrderdata({required int id}) {
     return userdatasourceobj.getSingleUserdata(id: id);
   }
 

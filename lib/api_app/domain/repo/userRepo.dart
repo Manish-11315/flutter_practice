@@ -3,5 +3,5 @@ import 'package:flutter_project_practice/api_app/domain/entities/products_entiti
 
 abstract class Userrepo {
   Future<List<ProductsEntity>> fetchallusers();
-  Future<OrderinfoEntity> getsingleOrderdata({required int id});
+  Future<List<OrderinfoEntity>> getsingleOrderdata({required int id});
 }

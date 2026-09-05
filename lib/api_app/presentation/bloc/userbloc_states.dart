@@ -13,7 +13,7 @@ class errorUserBloc extends UserblocStates{
 }
 
 class singleUserdataUserBloc extends UserblocStates{
-  final OrderinfoEntity userentity;
+  final List<OrderinfoEntity> userentity;
   singleUserdataUserBloc({required this.userentity});
 }
 

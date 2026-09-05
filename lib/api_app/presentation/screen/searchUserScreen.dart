@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_project_practice/api_app/domain/entities/order_entities/orderinfo_entity.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/userBloc.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_states.dart';
 import 'package:flutter_project_practice/api_app/presentation/widget/orderdatalist_widget.dart';
@@ -15,6 +16,9 @@ class Searchuserscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Search Order Items"),
+      ),
       body: Center(
         child: Column(
           children: [
@@ -27,9 +31,15 @@ class Searchuserscreen extends StatelessWidget {
                 } else if (state is errorUserBloc) {
                   return Center(child: Text(state.errormsg));
                 } else if (state is singleUserdataUserBloc) {
-                  final userdata = state.userentity;
-                  return Center(
-                    child: OrderdatalistWidget(orderinfoEntity: userdata),
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: state.userentity.length,
+                        itemBuilder: (context, index){
+                          final OrderinfoEntity listdata = state.userentity[index];
+                          print(" \t\t==================== Printing from search screen : $listdata}");
+                          return OrderdatalistWidget(orderinfoEntity: listdata);
+                        }
+                    ),
                   );
                 }
                 return Column(

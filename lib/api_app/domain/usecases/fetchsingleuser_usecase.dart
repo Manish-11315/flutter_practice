@@ -6,7 +6,7 @@ class FetchsingleuserUsecase {
   final Userrepo repoobj;
   FetchsingleuserUsecase({required this.repoobj});
 
-  Future<OrderinfoEntity> call({required int id}){
+  Future<List<OrderinfoEntity>> call({required int id}){
     return repoobj.getsingleOrderdata(id: id);
   }
 }

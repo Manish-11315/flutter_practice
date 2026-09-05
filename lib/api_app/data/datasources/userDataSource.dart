@@ -13,8 +13,8 @@ class Userdatasource {
   Future<List<productsModel>> getAllUsersData() async{
     try{
       final res = await dioinstance.get("products/");
-      print("Response data: ${res.data}");        // see actual data
-      print("Status code: ${res.statusCode}");    // see status
+      print("Response data: ${res.data}");
+      print("Status code: ${res.statusCode}");
       final datalist = res.data as List;
       return datalist.map((r) => productsModel.fromJson(r)).toList();
     }on DioException catch (dioerr){
@@ -32,12 +32,13 @@ class Userdatasource {
     }
   }
 
-  Future<OrderinfoModel> getSingleUserdata({required int id})async{
+  Future<List<OrderinfoModel>> getSingleUserdata({required int id})async{
     try{
       final res = await dioinstance.get("orders/status/?order_id=$id");
       final data = res.data;
+      final datalist = data as List;
       print("response : ${res.data}");
-      return OrderinfoModel.fromJson(data);
+      return datalist.map((toElement) => OrderinfoModel.fromJson(toElement)).toList();
     }on DioException catch (dioerr){
       if(dioerr.type == DioExceptionType.connectionTimeout){
         throw Exception("Cannot Connect to the Server");
@@ -47,6 +48,7 @@ class Userdatasource {
         throw Exception("Unhandled Dio Exception");
       }
     }catch (err){
+      print("========================= Error Came ================== $err");
       throw Exception("Unhandled Exception");
     }
   }
