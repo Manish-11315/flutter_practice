@@ -2,13 +2,15 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_project_practice/api_app/data/datasources/diosource.dart';
 import 'package:flutter_project_practice/api_app/data/models/orders_model/orderinfo_model.dart';
+import 'package:flutter_project_practice/api_app/data/models/post_api_models/postApiModel.dart';
 import 'package:flutter_project_practice/api_app/data/models/products_model/productsmodel.dart';
 import 'package:flutter_project_practice/api_app/domain/entities/products_entities/productsEntity.dart';
 
 class Userdatasource {
 
   final Dio dioinstance;
-  Userdatasource({required this.dioinstance});
+  final Dio postinstancedio;
+  Userdatasource({required this.dioinstance, required this.postinstancedio});
 
   Future<List<productsModel>> getAllUsersData() async{
     try{
@@ -53,5 +55,28 @@ class Userdatasource {
     }
   }
 
+
+  Future<Postapimodel> postdata({required String id, required String name, required String email, required String createdAt}) async{
+    try{
+      final res = await postinstancedio.post("orders", data: {
+
+      });
+      final data = res.data;
+      final datalist = data as List;
+      print("response : ${res.data}");
+      return datalist.map((toElement) => OrderinfoModel.fromJson(toElement)).toList();
+    }on DioException catch (dioerr){
+      if(dioerr.type == DioExceptionType.connectionTimeout){
+        throw Exception("Cannot Connect to the Server");
+      }else if(dioerr.type == DioExceptionType.sendTimeout){
+        throw Exception("Cannot Send data to the Server");
+      }else{
+        throw Exception("Unhandled Dio Exception");
+      }
+    }catch (err){
+      print("========================= Error Came ================== $err");
+      throw Exception("Unhandled Exception");
+    }
+  }
 
 }
