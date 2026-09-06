@@ -14,8 +14,8 @@ import 'package:flutter_project_practice/connectivity_app/presentation/screen/co
 import 'api_app/presentation/screen/displayUserListScreen.dart';
 
 void main() {
-  final Dio dioinstance = Diosource().dio;
-  final Userrepoimpl userrepoimplobj = Userrepoimpl(userdatasourceobj: Userdatasource(dioinstance: dioinstance));
+  final Dio getdioinstance = Diosource.create(url: "https://fake-store-api.mock.beeceptor.com/api/");
+  final Userrepoimpl userrepoimplobj = Userrepoimpl(userdatasourceobj: Userdatasource(dioinstance: getdioinstance));
   runApp(MyApp(userrepoimplobj: userrepoimplobj,));
 }
 

@@ -1,14 +1,12 @@
 import 'package:dio/dio.dart';
 
 class Diosource{
-  static final Diosource diosourceex = Diosource._internal();
-  final Dio dio;
-
-  factory Diosource() => diosourceex;
-
-  Diosource._internal() : dio = Dio(
-    BaseOptions(
-      baseUrl: "https://fake-store-api.mock.beeceptor.com/api/"
-    )
-  );
+  static Dio create({required String url}){
+    return Dio(
+      BaseOptions(
+        baseUrl: url,
+        connectTimeout: Duration(seconds: 10)
+      )
+    );
+  }
 }
