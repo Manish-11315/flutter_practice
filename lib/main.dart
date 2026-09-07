@@ -6,8 +6,8 @@ import 'package:flutter_project_practice/api_app/data/datasources/userDataSource
 import 'package:flutter_project_practice/api_app/data/repo_impl/userRepoImpl.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchallusers_usecase.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchsingleuser_usecase.dart';
-import 'package:flutter_project_practice/api_app/presentation/bloc/userBloc.dart';
-import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_events.dart';
+import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userBloc.dart';
+import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userbloc_events.dart';
 import 'package:flutter_project_practice/connectivity_app/presentation/bloc/connectivity_bloc.dart';
 import 'package:flutter_project_practice/connectivity_app/presentation/screen/connectivity_homescreen.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project_practice/api_app/domain/entities/order_entities/orderinfo_entity.dart';
-import 'package:flutter_project_practice/api_app/presentation/bloc/userBloc.dart';
-import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_states.dart';
+import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userBloc.dart';
+import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userbloc_states.dart';
 import 'package:flutter_project_practice/api_app/presentation/widget/orderdatalist_widget.dart';
 
-import '../bloc/userbloc_events.dart';
+import '../bloc/order_bloc/userbloc_events.dart';
 import '../widget/usersdatalist_widget.dart';
 
 class Searchuserscreen extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_project_practice/api_app/presentation/bloc/userBloc.dart';
-import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_events.dart';
-import 'package:flutter_project_practice/api_app/presentation/bloc/userbloc_states.dart';
+import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userBloc.dart';
+import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userbloc_events.dart';
+import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userbloc_states.dart';
 import 'package:flutter_project_practice/api_app/presentation/screen/searchUserScreen.dart';
 import 'package:flutter_project_practice/connectivity_app/presentation/bloc/connectivity_bloc.dart';
 import 'package:flutter_project_practice/connectivity_app/presentation/bloc/connectivity_states.dart';
