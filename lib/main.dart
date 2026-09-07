@@ -15,7 +15,8 @@ import 'api_app/presentation/screen/displayUserListScreen.dart';
 
 void main() {
   final Dio getdioinstance = Diosource.create(url: "https://fake-store-api.mock.beeceptor.com/api/");
-  final Userrepoimpl userrepoimplobj = Userrepoimpl(userdatasourceobj: Userdatasource(dioinstance: getdioinstance));
+  final Dio postdioinstance = Diosource.create(url: "https://quickmock.dev/m/tBMReZjZXb2X/");
+  final Userrepoimpl userrepoimplobj = Userrepoimpl(userdatasourceobj: Userdatasource(dioinstance: getdioinstance, postinstancedio: postdioinstance));
   runApp(MyApp(userrepoimplobj: userrepoimplobj,));
 }
 

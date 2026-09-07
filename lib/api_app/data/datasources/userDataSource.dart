@@ -58,13 +58,14 @@ class Userdatasource {
 
   Future<Postapimodel> postdata({required String id, required String name, required String email, required String createdAt}) async{
     try{
-      final res = await postinstancedio.post("orders", data: {
-
-      });
+      final res = await postinstancedio.post(
+          "orders", data: {
+          Postapimodel(id: id, name: name, email: email, created_at: createdAt).toJson()
+        }
+        );
       final data = res.data;
-      final datalist = data as List;
-      print("response : ${res.data}");
-      return datalist.map((toElement) => OrderinfoModel.fromJson(toElement)).toList();
+      print("Post Data : $data");
+      return Postapimodel.fromJson(data);
     }on DioException catch (dioerr){
       if(dioerr.type == DioExceptionType.connectionTimeout){
         throw Exception("Cannot Connect to the Server");
