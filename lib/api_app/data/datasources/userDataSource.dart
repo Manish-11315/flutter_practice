@@ -1,83 +1,90 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_project_practice/api_app/data/datasources/diosource.dart';
 import 'package:flutter_project_practice/api_app/data/models/orders_model/orderinfo_model.dart';
 import 'package:flutter_project_practice/api_app/data/models/post_api_models/postApiModel.dart';
 import 'package:flutter_project_practice/api_app/data/models/products_model/productsmodel.dart';
-import 'package:flutter_project_practice/api_app/domain/entities/products_entities/productsEntity.dart';
 
 class Userdatasource {
-
   final Dio dioinstance;
   final Dio postinstancedio;
+
   Userdatasource({required this.dioinstance, required this.postinstancedio});
 
-  Future<List<productsModel>> getAllUsersData() async{
-    try{
+  Future<List<productsModel>> getAllUsersData() async {
+    try {
       final res = await dioinstance.get("products/");
       print("Response data: ${res.data}");
       print("Status code: ${res.statusCode}");
       final datalist = res.data as List;
       return datalist.map((r) => productsModel.fromJson(r)).toList();
-    }on DioException catch (dioerr){
-      if(dioerr.type == DioExceptionType.connectionTimeout){
+    } on DioException catch (dioerr) {
+      if (dioerr.type == DioExceptionType.connectionTimeout) {
         throw Exception("Cannot Connect to the Server");
-      }else if(dioerr.type == DioExceptionType.sendTimeout){
+      } else if (dioerr.type == DioExceptionType.sendTimeout) {
         throw Exception("Cannot Send data to the Server");
-      }else{
+      } else {
         throw Exception("Unhandled Dio Exception");
       }
-    }catch (err){
+    } catch (err) {
       print("====================== Error : $err");
       throw Exception("Unhandled Exception : $err");
-
     }
   }
 
-  Future<List<OrderinfoModel>> getSingleUserdata({required int id})async{
-    try{
+  Future<List<OrderinfoModel>> getSingleUserdata({required int id}) async {
+    try {
       final res = await dioinstance.get("orders/status/?order_id=$id");
       final data = res.data;
       final datalist = data as List;
       print("response : ${res.data}");
-      return datalist.map((toElement) => OrderinfoModel.fromJson(toElement)).toList();
-    }on DioException catch (dioerr){
-      if(dioerr.type == DioExceptionType.connectionTimeout){
+      return datalist
+          .map((toElement) => OrderinfoModel.fromJson(toElement))
+          .toList();
+    } on DioException catch (dioerr) {
+      if (dioerr.type == DioExceptionType.connectionTimeout) {
         throw Exception("Cannot Connect to the Server");
-      }else if(dioerr.type == DioExceptionType.sendTimeout){
+      } else if (dioerr.type == DioExceptionType.sendTimeout) {
         throw Exception("Cannot Send data to the Server");
-      }else{
+      } else {
         throw Exception("Unhandled Dio Exception");
       }
-    }catch (err){
+    } catch (err) {
       print("========================= Error Came ================== $err");
       throw Exception("Unhandled Exception");
     }
   }
 
-
-  Future<Postapimodel> postdata({required String id, required String name, required String email, required String createdAt}) async{
-    try{
+  Future<Postapimodel> postdata({
+    required String id,
+    required String name,
+    required String email,
+    required String createdAt,
+  }) async {
+    try {
       final res = await postinstancedio.post(
-          "orders", data: {
-          Postapimodel(id: id, name: name, email: email, created_at: createdAt).toJson()
-        }
-        );
+        "orders",
+        data: {
+          Postapimodel(
+            id: id,
+            name: name,
+            email: email,
+            created_at: createdAt,
+          ).toJson(),
+        },
+      );
       final data = res.data;
       print("Post Data : $data");
       return Postapimodel.fromJson(data);
-    }on DioException catch (dioerr){
-      if(dioerr.type == DioExceptionType.connectionTimeout){
+    } on DioException catch (dioerr) {
+      if (dioerr.type == DioExceptionType.connectionTimeout) {
         throw Exception("Cannot Connect to the Server");
-      }else if(dioerr.type == DioExceptionType.sendTimeout){
+      } else if (dioerr.type == DioExceptionType.sendTimeout) {
         throw Exception("Cannot Send data to the Server");
-      }else{
+      } else {
         throw Exception("Unhandled Dio Exception");
       }
-    }catch (err){
+    } catch (err) {
       print("========================= Error Came ================== $err");
       throw Exception("Unhandled Exception");
     }
   }
-
 }

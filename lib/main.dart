@@ -6,8 +6,11 @@ import 'package:flutter_project_practice/api_app/data/datasources/userDataSource
 import 'package:flutter_project_practice/api_app/data/repo_impl/userRepoImpl.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchallusers_usecase.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchsingleuser_usecase.dart';
+import 'package:flutter_project_practice/api_app/domain/usecases/getUserUseCase.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userBloc.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userbloc_events.dart';
+import 'package:flutter_project_practice/api_app/presentation/bloc/post_api_bloc/postBloc.dart';
+import 'package:flutter_project_practice/api_app/presentation/screen/postApiScreenUi.dart';
 import 'package:flutter_project_practice/connectivity_app/presentation/bloc/connectivity_bloc.dart';
 import 'package:flutter_project_practice/connectivity_app/presentation/screen/connectivity_homescreen.dart';
 
@@ -40,7 +43,8 @@ class MyApp extends StatelessWidget {
             fetchsingleuserUsecase: FetchsingleuserUsecase(repoobj: userrepoimplobj),
             fetchallusersUsecase: FetchallusersUsecase(userrepoobj: userrepoimplobj))..add(getallusersdata_event())
         ),
-      ], child: Displayuserlistscreen()),
+        BlocProvider(create: (context) => Postbloc(getuserusecaseinstance: Getuserusecase(userrepoobj: userrepoimplobj)))
+      ], child: Postapiscreenui()),
     );
   }
 }
