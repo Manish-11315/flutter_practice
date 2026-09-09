@@ -23,7 +23,7 @@ class Listbloc extends Bloc<ListblocEvents, ListblocStates> {
 
   void _deletelistevent(deletelistEvent event, Emitter<ListblocStates> emit) {
     datamodel.removeAt(event.id);
-    List<Datamodel> deletedlist = datamodel;
+    List<Datamodel> deletedlist = List.from(datamodel);
     emit(listdeleteState(updatedlist: deletedlist));
   }
 }

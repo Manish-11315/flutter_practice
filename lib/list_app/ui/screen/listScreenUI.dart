@@ -36,7 +36,9 @@ class ListScreenui extends StatelessWidget {
                 final listitem = state.datamodel[index];
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Listwidget(datamodel: listitem),
+                  child: Listwidget(datamodel: listitem, ontapdelete: () {
+                    BlocProvider.of<Listbloc>(context).add(deletelistEvent(id: state.datamodel[index].id));
+                  },),
                 );
               },
             );
@@ -55,7 +57,6 @@ class ListScreenui extends StatelessWidget {
             enableDrag: true,
             showDragHandle: true,
             context: context,
-            scrollControlDisabledMaxHeightRatio: 0.42,
 
             builder: (context) {
               // listbloccontext.add(initiallistEvent());
@@ -106,6 +107,10 @@ class ListScreenui extends StatelessWidget {
                           // listdatamodel.add(Datamodel(id: id, name: name, email: email, salary: salary));
                           listbloccontext.add(addListEvent(datamodel: Datamodel(id: id, name: name, email: email, salary: salary)));
                           Navigator.pop(context);
+                          idcontroller.clear();
+                          emailcontroller.clear();
+                          namecontroller.clear();
+                          salarycontroller.clear();
                           },
                         child: Container(
                           decoration: BoxDecoration(

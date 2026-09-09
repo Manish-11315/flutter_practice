@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project_practice/list_app/data/datamodel.dart';
 class Listwidget extends StatelessWidget {
   final Datamodel datamodel;
-  const Listwidget({super.key, required this.datamodel});
+  final VoidCallback ontapdelete;
+  const Listwidget({super.key, required this.datamodel, required this.ontapdelete});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,10 @@ class Listwidget extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 22.0),
                 child: Align(
                   alignment: Alignment.centerRight,
-                    child: Icon(Icons.delete)),
+                    child: GestureDetector(
+                        onTap: ontapdelete,
+                        child: Icon(Icons.delete))
+                ),
               ),
             )
           ],
