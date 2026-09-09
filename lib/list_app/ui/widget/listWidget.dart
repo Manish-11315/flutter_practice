@@ -11,13 +11,32 @@ class Listwidget extends StatelessWidget {
         color: Colors.redAccent,
         borderRadius: BorderRadius.circular(30)
       ),
-      child: Column(
-        children: [
-          Text("Id   ===:===  ${datamodel.id} "),
-          Text("Email   ===:===  ${datamodel.email} "),
-          Text("Name   ===:===  ${datamodel.name} "),
-          Text("Salary   ===:===  ${datamodel.salary} "),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.only(left: 28.0, top: 10, bottom: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          spacing: 20,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Id   ===:===  ${datamodel.id} "),
+                Text("Email   ===:===  ${datamodel.email} "),
+                Text("Name   ===:===  ${datamodel.name} "),
+                Text("Salary   ===:===  ${datamodel.salary} "),
+              ],
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 22.0),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                    child: Icon(Icons.delete)),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

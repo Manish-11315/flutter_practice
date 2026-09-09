@@ -21,6 +21,9 @@ class ListScreenui extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("List View App"),
+      ),
       body: BlocConsumer<Listbloc, ListblocStates>(
         builder: (context, state) {
           if (state is loadingpostState) {
@@ -30,8 +33,11 @@ class ListScreenui extends StatelessWidget {
               itemCount: state.datamodel.length,
               // itemCount: 10,
               itemBuilder: (context, index) {
-                final listitem = listdatamodel[index];
-                return Listwidget(datamodel: listitem);
+                final listitem = state.datamodel[index];
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Listwidget(datamodel: listitem),
+                );
               },
             );
           }
@@ -44,6 +50,7 @@ class ListScreenui extends StatelessWidget {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          final listbloccontext = BlocProvider.of<Listbloc>(context);
           showModalBottomSheet(
             enableDrag: true,
             showDragHandle: true,
@@ -51,6 +58,7 @@ class ListScreenui extends StatelessWidget {
             scrollControlDisabledMaxHeightRatio: 0.42,
 
             builder: (context) {
+              // listbloccontext.add(initiallistEvent());
               return Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Container(
@@ -95,10 +103,10 @@ class ListScreenui extends StatelessWidget {
 
                           final double salary = double.parse(salarycontroller.text.toString());
                           print("printing value of salary : $salary");
-
-                          listdatamodel.add(Datamodel(id: id, name: name, email: email, salary: salary));
-                          BlocProvider.of<Listbloc>(context.read<Listbloc>() as BuildContext).add(addListEvent(datamodel: listdatamodel[0]));
-                        },
+                          // listdatamodel.add(Datamodel(id: id, name: name, email: email, salary: salary));
+                          listbloccontext.add(addListEvent(datamodel: Datamodel(id: id, name: name, email: email, salary: salary)));
+                          Navigator.pop(context);
+                          },
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),

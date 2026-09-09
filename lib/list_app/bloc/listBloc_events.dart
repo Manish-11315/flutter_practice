@@ -11,3 +11,5 @@ class deletelistEvent extends ListblocEvents{
   final int id;
   deletelistEvent({required this.id});
 }
+
+class initiallistEvent extends ListblocEvents{}
