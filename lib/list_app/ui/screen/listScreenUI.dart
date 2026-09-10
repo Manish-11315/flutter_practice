@@ -37,7 +37,7 @@ class ListScreenui extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Listwidget(datamodel: listitem, ontapdelete: () {
-                    BlocProvider.of<Listbloc>(context).add(deletelistEvent(id: state.datamodel[index].id));
+                    BlocProvider.of<Listbloc>(context).add(deletelistEvent(id: index));
                   },),
                 );
               },

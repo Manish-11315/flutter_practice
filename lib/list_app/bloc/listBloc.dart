@@ -14,6 +14,7 @@ class Listbloc extends Bloc<ListblocEvents, ListblocStates> {
     });
   }
 
+
   void _addlistevent(addListEvent event, Emitter<ListblocStates> emit) {
     datamodel.add(event.datamodel);
     final List<Datamodel> updateList = List.from(datamodel);
@@ -24,6 +25,8 @@ class Listbloc extends Bloc<ListblocEvents, ListblocStates> {
   void _deletelistevent(deletelistEvent event, Emitter<ListblocStates> emit) {
     datamodel.removeAt(event.id);
     List<Datamodel> deletedlist = List.from(datamodel);
-    emit(listdeleteState(updatedlist: deletedlist));
+    print("Deleted List object : ${deletedlist[event.id]}");
+    emit(listshowState(datamodel: datamodel));
+    // emit(listdeleteState(updatedlist: deletedlist));
   }
 }
