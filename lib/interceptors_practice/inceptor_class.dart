@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
 
-class InceptorClass extends Interceptors{
-  static final InceptorClass interceptorclass = InceptorClass._internal();
+class InceptorClass extends Interceptor{
 
-  InceptorClass._internal();
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    // TODO: implement onError
+    super.onError(err, handler);
+  }
 }
