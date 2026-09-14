@@ -32,10 +32,16 @@ class dioceptor {
       final result = await dioobj.get(
         "https://jsonplaceholder.typicode.com/todos",
       );
-      print(
-        " \n this is the response of the API : \n ========================================================= \n${result.data}",
-      );
-      final datalist = result.data;
+      dioobj.interceptors.add(InterceptorsWrapper(
+        onRequest: (option,handler){
+          LogInterceptor(requestUrl: true, responseBody: true);
+          handler.next(option);
+        }
+      ));
+      // print(
+      //   " \n this is the response of the API : \n ========================================================= \n${result.data}",
+      // );
+      final datalist = result.data as Map;
       return datalist["title"];
     } catch (err) {
       return err.toString();
