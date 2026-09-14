@@ -18,6 +18,7 @@ import 'package:flutter_project_practice/list_app/data/datamodel.dart';
 import 'package:flutter_project_practice/list_app/ui/screen/listScreenUI.dart';
 
 import 'api_app/presentation/screen/displayUserListScreen.dart';
+import 'interceptors_practice/inceptor_class.dart';
 
 void main() {
   final Dio getdioinstance = Diosource.create(url: "https://fake-store-api.mock.beeceptor.com/api/");
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => Postbloc(getuserusecaseinstance: Getuserusecase(userrepoobj: userrepoimplobj))),
         BlocProvider(create: (context) => Listbloc(datamodel: datamodel))
-      ], child: ListScreenui()),
+      ], child: DioInterceptorTest()),
     );
   }
 }
