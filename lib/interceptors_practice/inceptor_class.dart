@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +22,8 @@ class _DioInterceptorTestState extends State<DioInterceptorTest> {
   }
 
   Future<String> callmethod() async {
+    final data = await dioceptor.printDio();
+    print("Data in callmethod : $data");
     return await dioceptor.printDio();
  }
 }
@@ -34,15 +38,20 @@ class dioceptor {
       );
       dioobj.interceptors.add(InterceptorsWrapper(
         onRequest: (option,handler){
-          LogInterceptor(requestUrl: true, responseBody: true);
+          log(option.baseUrl);
+          log("Method Name : =============================================== ===================== ${option.method.toUpperCase()}");
           handler.next(option);
         }
       ));
       // print(
       //   " \n this is the response of the API : \n ========================================================= \n${result.data}",
       // );
-      final datalist = result.data as Map;
-      return datalist["title"];
+      final datalist = result.data as List;
+      print("DataList : => =================================== ${datalist}");
+      Map<String, dynamic> datamapped = {};
+      final title = datalist.map((data) => datamapped["title"].toString()).toList();
+      print("\n\n\n\n\t Title of the page \t\t\t ======================================  $title \n\n\n\n");
+      return "title";
     } catch (err) {
       return err.toString();
     }
