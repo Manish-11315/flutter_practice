@@ -62,14 +62,13 @@ class Userdatasource {
     try {
       final res = await postinstancedio.post(
         "orders",
-        data: {
+        data:
           Postapimodel(
             id: id,
             name: name,
             email: email,
             created_at: createdAt,
           ).toJson(),
-        },
       );
       final data = res.data;
       print("Post Data : $data");
