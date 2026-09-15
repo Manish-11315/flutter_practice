@@ -17,7 +17,6 @@ class _DioInterceptorTestState extends State<DioInterceptorTest> {
   @override
   void initState(){
     _titleheadings  = dioceptor.printDio();
-    print("Instance of title in initstate : $_titleheadings");
   }
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class _DioInterceptorTestState extends State<DioInterceptorTest> {
               return ListView.builder(
                   itemCount: listdata?.length,
                   itemBuilder: (context, index){
-                    return ListTile(title: Text(_titleheadings.toString()),);
+                    return ListTile(title: Text(listdata![index]),);
                   }
               );
             }
@@ -54,17 +53,17 @@ class dioceptor {
     ..interceptors.add(
       InterceptorsWrapper(
         onRequest: (option, handler) {
-          log("Url link :====================================================================== ${option.uri}");
-          log("Method Name : =============================================== ================== ${option.method.toUpperCase()}");
+          print("Url link :====================================================================== ${option.uri}");
+          print("Method Name : =============================================== ================== ${option.method.toUpperCase()}");
           handler.next(option);
         },
 
         onResponse: (response, handler) {
-          log("Response Status Code : ${response.statusCode}, ${response.statusMessage}");
+          print("Response Status Code : ${response.statusCode}, ${response.statusMessage}");
           handler.next(response);
         },
         onError: (error, handler) {
-          log("Error Message : ${error.error}");
+          print("Error Message : ${error.error}");
           handler.next(error);
         },
       ),
