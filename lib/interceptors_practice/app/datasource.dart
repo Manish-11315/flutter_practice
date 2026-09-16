@@ -1,22 +1,26 @@
+import 'dart:async';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_project_practice/interceptors_practice/app/data_entity.dart';
 
 class Datasource {
-  late Connectivity connectivityinstance = Connectivity();
+  late final Connectivity connectivityinstance;
+  late final StreamSubscription streamSubscription;
   late final Dio dioobj = Dio()
     ..interceptors.add(
       InterceptorsWrapper(
         onRequest: (requestOptions, handler) {},
         onResponse: (options, handler) {},
-        onError: (error, handler) {
+        onError: (error, handler)async {
           if (error.type == DioExceptionType.connectionError) {
             print(
               "=============================================== +++++++ Connection Error log Printed ++++++++ ===================",
             );
-            connectivityinstance.onConnectivityChanged.listen((onchange) {
-              if (!onchange.contains(ConnectivityResult.mobile) &&
-                  !onchange.contains(ConnectivityResult.wifi)) {
+            streamSubscription = connectivityinstance.onConnectivityChanged.listen((connectivitydata){
+              if(connectivitydata.contains(ConnectivityResult.wifi) || connectivitydata.contains(ConnectivityResult.mobile)){
+                streamSubscription.cancel();
+                dioobj.fetch(error.requestOptions);
                 handler.next(error);
               }
             });
@@ -34,9 +38,9 @@ class Datasource {
         name: "Erwin",
         email: "rj@email.com",
         creationTime: "17 - SEP - 2026",
-      ).toJson(id: id, name: name, email: email, creationTime: creation_time),
+      ).toJson(),
     );
     final datalist = returndata.data as List;
-    return datalist.map((data) => DataModel.toJson(data)).toList();
+    return datalist.map((data) => DataModel.fromJson(data)).toList();
   }
 }

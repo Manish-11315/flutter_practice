@@ -11,7 +11,7 @@ class DataModel {
     required this.creationTime,
   });
 
-  factory DataModel.toJson(Map<String, dynamic> json) {
+  factory DataModel.fromJson(Map<String, dynamic> json) {
     return DataModel(
       id: json["id"],
       name: json["name"],
@@ -20,12 +20,7 @@ class DataModel {
     );
   }
 
-  Map<String, dynamic> toJson({
-    required String id,
-    required String name,
-    required String email,
-    required String creationTime,
-  }) {
+  Map<String, dynamic> toJson() {
     return {
       "id": id,
       "name" : name,
