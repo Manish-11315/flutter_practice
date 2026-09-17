@@ -4,7 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_project_practice/interceptors_practice/app/data_entity.dart';
 
-class Datasource {
+class interceptorAppDatasource {
   late final Connectivity connectivityinstance;
   late final StreamSubscription streamSubscription;
   late final Dio dioobj = Dio()
@@ -17,20 +17,24 @@ class Datasource {
             print(
               "=============================================== +++++++ Connection Error log Printed ++++++++ ===================",
             );
-            streamSubscription = connectivityinstance.onConnectivityChanged.listen((connectivitydata){
-              if(connectivitydata.contains(ConnectivityResult.wifi) || connectivitydata.contains(ConnectivityResult.mobile)){
+            streamSubscription = connectivityinstance.onConnectivityChanged.listen((onData){
+              if(onData.contains(ConnectivityResult.wifi) || onData.contains(ConnectivityResult.mobile)){
                 streamSubscription.cancel();
-                dioobj.fetch(error.requestOptions);
+                dioobj.fetch(error.requestOptions).then((dioerror){
+                  handler.resolve(dioerror);
+                });
+              }else{
                 handler.next(error);
               }
             });
+          }else{
+            handler.next(error);
           }
-          handler.next(error);
         },
       ),
     );
 
-  Future<List<DataModel>> getdata({required String id, required String name, required String email, required String creation_time}) async {
+  Future<List<DataModel>> getdata() async {
     final returndata = await dioobj.post(
       "https://quickmock.dev/m/rBDBHTB7gYYN/users/post",
       data: DataModel(

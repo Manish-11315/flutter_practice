@@ -13,11 +13,13 @@ import 'package:flutter_project_practice/api_app/presentation/bloc/post_api_bloc
 import 'package:flutter_project_practice/api_app/presentation/screen/postApiScreenUi.dart';
 import 'package:flutter_project_practice/connectivity_app/presentation/bloc/connectivity_bloc.dart';
 import 'package:flutter_project_practice/connectivity_app/presentation/screen/connectivity_homescreen.dart';
+import 'package:flutter_project_practice/interceptors_practice/app/datasource.dart';
 import 'package:flutter_project_practice/list_app/bloc/listBloc.dart';
 import 'package:flutter_project_practice/list_app/data/datamodel.dart';
 import 'package:flutter_project_practice/list_app/ui/screen/listScreenUI.dart';
 
 import 'api_app/presentation/screen/displayUserListScreen.dart';
+import 'interceptors_practice/app/screen_ui.dart';
 import 'interceptors_practice/inceptor_class.dart';
 
 void main() {
@@ -25,13 +27,15 @@ void main() {
   final Dio postdioinstance = Diosource.create(url: "https://quickmock.dev/m/tBMReZjZXb2X/");
   final Userrepoimpl userrepoimplobj = Userrepoimpl(userdatasourceobj: Userdatasource(dioinstance: getdioinstance, postinstancedio: postdioinstance));
   List<Datamodel> datamodelobj = [];
-  runApp(MyApp(userrepoimplobj: userrepoimplobj, datamodel: datamodelobj,));
+  final interceptorAppDatasource interceptorobj = interceptorAppDatasource();
+  runApp(MyApp(userrepoimplobj: userrepoimplobj, datamodel: datamodelobj,interceptorappdatasourceobj: interceptorobj,));
 }
 
 class MyApp extends StatelessWidget {
   final Userrepoimpl userrepoimplobj;
   final List<Datamodel> datamodel;
-  const MyApp({super.key, required this.userrepoimplobj, required this.datamodel});
+  final interceptorAppDatasource interceptorappdatasourceobj;
+  const MyApp({super.key, required this.userrepoimplobj, required this.datamodel, required this.interceptorappdatasourceobj});
 
   // This widget is the root of your application.
   @override
@@ -51,7 +55,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => Postbloc(getuserusecaseinstance: Getuserusecase(userrepoobj: userrepoimplobj))),
         BlocProvider(create: (context) => Listbloc(datamodel: datamodel))
-      ], child: DioInterceptorTest()),
+      ], child: ScreenUi(interceptorappdatasourceobj: interceptorAppDatasource(),)),
     );
   }
 }
