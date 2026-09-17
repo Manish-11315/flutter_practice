@@ -27,8 +27,6 @@ class interceptorAppDatasource {
                 handler.next(error);
               }
             });
-          }else{
-            handler.next(error);
           }
         },
       ),
