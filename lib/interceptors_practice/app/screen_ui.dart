@@ -24,7 +24,11 @@ class _ScreenUiState extends State<ScreenUi> {
             children: [
               Text("This is new screen"),
               MaterialButton(
-                onPressed: ,
+                onPressed: (){
+                  print("Function Started");
+                  buttonpressed(context);
+                  print("Function Existed");
+                },
                 child: Container(
                   decoration: BoxDecoration(color: Colors.amberAccent),
                   child: Text("Send Data To API"),
@@ -38,6 +42,8 @@ class _ScreenUiState extends State<ScreenUi> {
   }
 
   Future<List<DataModel>> buttonpressed(BuildContext context) async{
-    return await localinterceptorobj.getdata();
+    final data = await localinterceptorobj.getdata();
+    print("Function Ran and this came : ${data.length}");
+    return data;
   }
 }
