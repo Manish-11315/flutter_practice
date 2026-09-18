@@ -43,19 +43,21 @@ class _ScreenUiState extends State<ScreenUi> {
                 ),
               ),
               Container(
-                child: isdataloaded
-                    ? isloading
+                child:  isloading
+                    ? isdataloaded
                           ? Center(child: CircularProgressIndicator())
-                          : ListView.builder(
-                              itemCount: data.length,
-                              itemBuilder: (context, index) {
-                                final dataindex = data[index];
-                                return ListTile(
-                                  title: Text(dataindex.name),
-                                  subtitle: Text(dataindex.email),
-                                );
-                              },
-                            )
+                          : Expanded(
+                            child: ListView.builder(
+                                itemCount: data.length,
+                                itemBuilder: (context, index) {
+                                  final dataindex = data[index];
+                                  return ListTile(
+                                    title: Text(dataindex.name),
+                                    subtitle: Text(dataindex.email),
+                                  );
+                                },
+                              ),
+                          )
                     : Center(child: Text("No Data Found")),
               ),
             ],

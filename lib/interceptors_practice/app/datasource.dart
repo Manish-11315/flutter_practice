@@ -5,13 +5,17 @@ import 'package:dio/dio.dart';
 import 'package:flutter_project_practice/interceptors_practice/app/data_entity.dart';
 
 class interceptorAppDatasource {
-  late final Connectivity connectivityinstance;
+  final Connectivity connectivityinstance = Connectivity();
   late final StreamSubscription streamSubscription;
   late final Dio dioobj = Dio()
     ..interceptors.add(
       InterceptorsWrapper(
-        onRequest: (requestOptions, handler) {},
-        onResponse: (options, handler) {},
+        onRequest: (requestOptions, handler) {
+          handler.next(requestOptions);
+        },
+        onResponse: (options, handler) {
+          handler.next(options);
+        },
         onError: (error, handler)async {
           if (error.type == DioExceptionType.connectionError) {
             print(
