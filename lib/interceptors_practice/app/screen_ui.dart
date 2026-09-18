@@ -20,6 +20,9 @@ class _ScreenUiState extends State<ScreenUi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Interceptor Practice App"),
+      ),
       body: Center(
         child: Container(
           child: Column(
@@ -51,6 +54,7 @@ class _ScreenUiState extends State<ScreenUi> {
                                 itemCount: data.length,
                                 itemBuilder: (context, index) {
                                   final dataindex = data[index];
+                                  print("Data came : $dataindex");
                                   return ListTile(
                                     title: Text(dataindex.name),
                                     subtitle: Text(dataindex.email),

@@ -6,14 +6,16 @@ import 'package:flutter_project_practice/interceptors_practice/app/data_entity.d
 
 class interceptorAppDatasource {
   final Connectivity connectivityinstance = Connectivity();
-  late final StreamSubscription streamSubscription;
+  StreamSubscription? streamSubscription;
   late final Dio dioobj = Dio()
     ..interceptors.add(
       InterceptorsWrapper(
         onRequest: (requestOptions, handler) {
+          print("=============================================== +++++++ On request log Printed ++++++++ ===================");
           handler.next(requestOptions);
         },
         onResponse: (options, handler) {
+          print("=============================================== +++++++ On Response log Printed ++++++++ ===================");
           handler.next(options);
         },
         onError: (error, handler)async {
@@ -23,14 +25,14 @@ class interceptorAppDatasource {
             );
             streamSubscription = connectivityinstance.onConnectivityChanged.listen((onData){
               if(onData.contains(ConnectivityResult.wifi) || onData.contains(ConnectivityResult.mobile)){
-                streamSubscription.cancel();
+                streamSubscription?.cancel();
                 dioobj.fetch(error.requestOptions).then((dioerror){
                   handler.resolve(dioerror);
                 });
-              }else{
-                handler.next(error);
               }
             });
+          }else{
+            handler.next(error);
           }
         },
       ),
