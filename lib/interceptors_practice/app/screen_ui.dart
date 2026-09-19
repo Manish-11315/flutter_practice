@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_project_practice/interceptors_practice/app/data_entity.dart';
 import 'package:flutter_project_practice/interceptors_practice/app/datasource.dart';
@@ -12,7 +14,8 @@ class ScreenUi extends StatefulWidget {
 }
 
 class _ScreenUiState extends State<ScreenUi> {
-  List<DataModel> data = [];
+  // late DataModel data;
+  Map<String, dynamic> datamap = {};
   bool isloading = false;
   bool iserror = false;
   bool isdataloaded = false;
@@ -50,7 +53,7 @@ class _ScreenUiState extends State<ScreenUi> {
                     ? isdataloaded
                           ? Center(child: CircularProgressIndicator())
                           : Expanded(
-                            child: ListView.builder(
+                            child: /*ListView.builder(
                                 itemCount: data.length,
                                 itemBuilder: (context, index) {
                                   final dataindex = data[index];
@@ -60,7 +63,16 @@ class _ScreenUiState extends State<ScreenUi> {
                                     subtitle: Text(dataindex.email),
                                   );
                                 },
-                              ),
+                              ),*/
+                              Container(
+                                child: Column(
+                                  children: [
+                                    Text("Name : ${datamap["name"]}"),
+                                    // Text("EMail : ${datamap.isNotEmpty}"),
+                                  ],
+                                ),
+
+                              )
                           )
                     : Center(child: Text("No Data Found")),
               ),
@@ -78,15 +90,18 @@ class _ScreenUiState extends State<ScreenUi> {
     try {
       final result = await widget.interceptorappdatasourceobj.getdata();
       setState(() {
-        data = result;
+        // data = result;
+        datamap.addAll(result);
+
         isloading = false;
         isdataloaded = true;
+        print("----------------------- Data loaded in state : ${datamap}");
       });
     } catch (error) {
       setState(() {
         isdataloaded = false;
         iserror = true;
-        print("Error Occurred : ${error.toString()}");
+        print("--------------------------- Error Occurred in state : ${error.toString()}");
       });
     } finally {
       setState(() {

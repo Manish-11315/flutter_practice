@@ -38,7 +38,7 @@ class interceptorAppDatasource {
       ),
     );
 
-  Future<List<DataModel>> getdata() async {
+  Future<Map<String,dynamic>> getdata() async {
     final returndata = await dioobj.post(
       "https://quickmock.dev/m/rBDBHTB7gYYN/users/post",
       data: DataModel(
@@ -48,7 +48,10 @@ class interceptorAppDatasource {
         creationTime: "17 - SEP - 2026",
       ).toJson(),
     );
-    final datalist = returndata.data as List;
-    return datalist.map((data) => DataModel.fromJson(data)).toList();
+    final datalist = returndata.data;
+    print("Datalist from datamodel : ${datalist}");
+    print("~~~~~~~  ~~~~~~ ~~~~~~ ~~~~~~~~DataList type : ${datalist.runtimeType}");
+    return datalist;
+    // return datalist.map((data) => DataModel.fromJson(data));
   }
 }
