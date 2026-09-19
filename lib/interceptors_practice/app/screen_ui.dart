@@ -18,6 +18,9 @@ class _ScreenUiState extends State<ScreenUi> {
   Map<String, dynamic> datamap = {};
   bool isloading = false;
   bool iserror = false;
+  String name = "" ;
+  String email = "" ;
+
   bool isdataloaded = false;
 
   @override
@@ -39,9 +42,9 @@ class _ScreenUiState extends State<ScreenUi> {
                   print("Function Started");
                   await buttonpressed(context);
                   print("Function Existed");
-                  setState(() {
-                    isloading = false;
-                  });
+                  // setState(() {
+                  //   isloading = false;
+                  // });
                 },
                 child: Container(
                   decoration: BoxDecoration(color: Colors.amberAccent),
@@ -51,9 +54,8 @@ class _ScreenUiState extends State<ScreenUi> {
               Container(
                 child:  isloading
                     ? isdataloaded
-                          ? Center(child: CircularProgressIndicator())
-                          : Expanded(
-                            child: /*ListView.builder(
+                          ? Expanded(
+                    child: /*ListView.builder(
                                 itemCount: data.length,
                                 itemBuilder: (context, index) {
                                   final dataindex = data[index];
@@ -64,16 +66,17 @@ class _ScreenUiState extends State<ScreenUi> {
                                   );
                                 },
                               ),*/
-                              Container(
-                                child: Column(
-                                  children: [
-                                    Text("Name : ${datamap["name"]}"),
-                                    // Text("EMail : ${datamap.isNotEmpty}"),
-                                  ],
-                                ),
+                    Container(
+                      child: Column(
+                        children: [
+                          Text("Name : ${name}"),
+                          Text("EMail : ${email}"),
+                        ],
+                      ),
 
-                              )
-                          )
+                    )
+                )
+                          : Center(child: CircularProgressIndicator())
                     : Center(child: Text("No Data Found")),
               ),
             ],
@@ -92,7 +95,9 @@ class _ScreenUiState extends State<ScreenUi> {
       setState(() {
         // data = result;
         datamap.addAll(result);
-
+        name = datamap["name"];
+        email = datamap["email"];
+        print("Data in loaded : name = > $name  email => $email");
         isloading = false;
         isdataloaded = true;
         print("----------------------- Data loaded in state : ${datamap}");
