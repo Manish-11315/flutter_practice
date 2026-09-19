@@ -52,9 +52,11 @@ class _ScreenUiState extends State<ScreenUi> {
                 ),
               ),
               Container(
-                child:  isloading
-                    ? isdataloaded
-                          ? Expanded(
+                child:  isdataloaded
+                    ? isloading
+                          ? Center(child: CircularProgressIndicator()) :
+                    iserror ? Container(child: Text("There is error ${iserror.toString()}"),) :
+                Expanded(
                     child: /*ListView.builder(
                                 itemCount: data.length,
                                 itemBuilder: (context, index) {
@@ -76,7 +78,6 @@ class _ScreenUiState extends State<ScreenUi> {
 
                     )
                 )
-                          : Center(child: CircularProgressIndicator())
                     : Center(child: Text("No Data Found")),
               ),
             ],

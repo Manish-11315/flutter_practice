@@ -7,7 +7,8 @@ import 'package:flutter_project_practice/interceptors_practice/app/data_entity.d
 class interceptorAppDatasource {
   final Connectivity connectivityinstance = Connectivity();
   StreamSubscription? streamSubscription;
-  late final Dio dioobj = Dio()
+  late final Dio dioobj = Dio()..options.sendTimeout = Duration(seconds: 5)
+    ..options.connectTimeout = Duration(seconds: 5)
     ..interceptors.add(
       InterceptorsWrapper(
         onRequest: (requestOptions, handler) {
