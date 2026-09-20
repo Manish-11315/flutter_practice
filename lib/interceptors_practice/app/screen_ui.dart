@@ -107,6 +107,7 @@ class _ScreenUiState extends State<ScreenUi> {
       setState(() {
         isdataloaded = false;
         iserror = true;
+        isloading = false;
         print("--------------------------- Error Occurred in state : ${error.toString()}");
       });
     } finally {
