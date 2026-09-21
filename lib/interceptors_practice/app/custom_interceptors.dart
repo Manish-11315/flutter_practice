@@ -51,6 +51,8 @@ class RetryInterceptor extends Interceptor{
           });
         }
       });
+    }else{
+      handler.next(err);
     }
   }
 }
@@ -63,6 +65,6 @@ class Diosource{
     final Dio dio2 = Dio()..interceptors.addAll([AuthInterceptors(token: newtoken)]);
   }
 
-  late final Dio dio = Dio()..interceptors.addAll([AuthInterceptors(token:  newtoken),LogInterceptor(),]);
+  late final Dio dio = Dio()..interceptors.addAll([AuthInterceptors(token:  newtoken),LogInterceptors(), RetryInterceptor(dioobj: dio)]);
 
 }
