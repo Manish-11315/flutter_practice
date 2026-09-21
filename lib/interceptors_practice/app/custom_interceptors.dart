@@ -1,12 +1,16 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 
 class AuthInterceptors extends Interceptor{
-  final Dio dioobj;
-  AuthInterceptors({required this.dioobj});
+  final String token;
+  AuthInterceptors({required this.token});
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    final token = "Bearer token";
+    options.headers["Authorization"] = "Bearer $token";
+    print("Header Token is : $token");
     handler.next(options);
   }
 }
@@ -29,7 +33,36 @@ class LogInterceptors extends Interceptor{
   }
 
 }
-Dio dio = Dio()..interceptors.addAll([
-  AuthInterceptors(dioobj: dio),
-  LogInterceptor()
-]);
+
+class RetryInterceptor extends Interceptor{
+  final Dio dioobj;
+  StreamSubscription? streamSubscription;
+  Connectivity connectivity = Connectivity();
+  RetryInterceptor({required this.dioobj});
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    if(err.type == DioExceptionType.connectionTimeout || err.type == DioExceptionType.connectionError){
+      streamSubscription = connectivity.onConnectivityChanged.listen((ondata){
+        if(ondata.contains(ConnectivityResult.mobile) || ondata.contains(ConnectivityResult.wifi)){
+          streamSubscription?.cancel();
+          dioobj.fetch(err.requestOptions).then((onValue){
+            handler.resolve(onValue);
+          });
+        }
+      });
+    }
+  }
+}
+
+
+class Diosource{
+  final newtoken = "Got token from the secure storage";
+
+  void dryrun(){
+    final Dio dio2 = Dio()..interceptors.addAll([AuthInterceptors(token: newtoken)]);
+  }
+
+  late final Dio dio = Dio()..interceptors.addAll([AuthInterceptors(token:  newtoken),LogInterceptor(),]);
+
+}
