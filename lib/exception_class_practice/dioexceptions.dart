@@ -16,3 +16,13 @@ AuthException convertToAuthException(DioException error){
   }
 }
 
+class DioSource{
+  void setupDio()async{
+    try{
+      final Dio dio = Dio();
+      dio.get("url");
+    }on DioException catch (dioerror){
+      throw convertToAuthException(dioerror);
+    }
+  }
+}
