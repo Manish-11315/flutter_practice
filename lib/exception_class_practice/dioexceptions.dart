@@ -1,5 +1,17 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_project_practice/exception_class_practice/exception_class.dart';
 
-class Dioexception extends DioException{
-  Dioexception({required super.requestOptions});
+AuthException convertToAuthException(DioException error){
+  switch(error.type){
+    case DioExceptionType.connectionError:
+    case DioExceptionType.sendTimeout:
+    case DioExceptionType.receiveTimeout:
+      return AuthException("Connection Timed Out");
+
+    case DioExceptionType.connectionError:
+      return AuthException("Check Your Internet Connection");
+
+    default:
+      return AuthException("Unhandled Exception error : ${error.response?.statusMessage}", statusCode : error.response?.statusCode);
+  }
 }
