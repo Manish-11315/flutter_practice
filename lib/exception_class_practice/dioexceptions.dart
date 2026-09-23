@@ -3,7 +3,7 @@ import 'package:flutter_project_practice/exception_class_practice/exception_clas
 
 AuthException convertToAuthException(DioException error){
   switch(error.type){
-    case DioExceptionType.connectionError:
+    case DioExceptionType.connectionTimeout:
     case DioExceptionType.sendTimeout:
     case DioExceptionType.receiveTimeout:
       return AuthException("Connection Timed Out");
@@ -15,3 +15,4 @@ AuthException convertToAuthException(DioException error){
       return AuthException("Unhandled Exception error : ${error.response?.statusMessage}", statusCode : error.response?.statusCode);
   }
 }
+
