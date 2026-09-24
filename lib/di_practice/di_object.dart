@@ -5,6 +5,9 @@ import 'package:get_it/get_it.dart';
 var getInstance = GetIt.instance;
 
 void setup(){
-  getInstance.registerLazySingleton<TestClass>(()=> TestClass());
-  debugPrint("Setup is called");
+  getInstance.registerFactory<TestClass>(() {
+    debugPrint(" --------------------------------- Setup is called here in this step -------------------------------");
+    return TestClass(name: "Name is not Important", id: 11315);
+  });
+  debugPrint("++++++++++++++++++++++++++++++ Setup is Created +++++++++++++++++++++ ");
 }

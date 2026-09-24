@@ -25,6 +25,7 @@ import 'interceptors_practice/app/screen_ui.dart';
 import 'interceptors_practice/inceptor_class.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   setup();
   final Dio getdioinstance = Diosource.create(url: "https://fake-store-api.mock.beeceptor.com/api/");
   final Dio postdioinstance = Diosource.create(url: "https://quickmock.dev/m/tBMReZjZXb2X/");
