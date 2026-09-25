@@ -21,9 +21,22 @@ void setupApiDependency() {
       ),
     ),
   );
-  getItInstance.registerSingleton<Userrepo>(Userrepoimpl(userdatasourceobj: getItInstance<Userdatasource>()));
-  getItInstance.registerSingleton<FetchallusersUsecase>(FetchallusersUsecase(userrepoobj: getItInstance<Userrepo>()));
-  getItInstance.registerSingleton<FetchsingleuserUsecase>(FetchsingleuserUsecase(repoobj: getItInstance<Userrepo>()));
-  getItInstance.registerSingleton<Getuserusecase>(Getuserusecase(userrepoobj: getItInstance<Userrepo>()));
-  getItInstance.registerFactory<Userbloc>(() => Userbloc(fetchsingleuserUsecase: getItInstance<FetchsingleuserUsecase>(), fetchallusersUsecase: getItInstance<FetchallusersUsecase>()));
+  getItInstance.registerSingleton<Userrepo>(
+    Userrepoimpl(userdatasourceobj: getItInstance<Userdatasource>()),
+  );
+  getItInstance.registerSingleton<FetchallusersUsecase>(
+    FetchallusersUsecase(userrepoobj: getItInstance<Userrepo>()),
+  );
+  getItInstance.registerSingleton<FetchsingleuserUsecase>(
+    FetchsingleuserUsecase(repoobj: getItInstance<Userrepo>()),
+  );
+  getItInstance.registerSingleton<Getuserusecase>(
+    Getuserusecase(userrepoobj: getItInstance<Userrepo>()),
+  );
+  getItInstance.registerFactory<Userbloc>(
+    () => Userbloc(
+      fetchsingleuserUsecase: getItInstance<FetchsingleuserUsecase>(),
+      fetchallusersUsecase: getItInstance<FetchallusersUsecase>(),
+    ),
+  );
 }
