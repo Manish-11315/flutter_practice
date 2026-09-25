@@ -28,19 +28,15 @@ import 'interceptors_practice/inceptor_class.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setupApiDependency();
-  final Dio getdioinstance = Diosource.create(url: "https://fake-store-api.mock.beeceptor.com/api/");
-  final Dio postdioinstance = Diosource.create(url: "https://quickmock.dev/m/tBMReZjZXb2X/");
-  final Userrepoimpl userrepoimplobj = Userrepoimpl(userdatasourceobj: Userdatasource(dioinstance: getdioinstance, postinstancedio: postdioinstance));
   List<Datamodel> datamodelobj = [];
   final interceptorAppDatasource interceptorobj = interceptorAppDatasource();
-  runApp(MyApp(userrepoimplobj: userrepoimplobj, datamodel: datamodelobj,interceptorappdatasourceobj: interceptorobj,));
+  runApp(MyApp(datamodel: datamodelobj,interceptorappdatasourceobj: interceptorobj,));
 }
 
 class MyApp extends StatelessWidget {
-  final Userrepoimpl userrepoimplobj;
   final List<Datamodel> datamodel;
   final interceptorAppDatasource interceptorappdatasourceobj;
-  const MyApp({super.key, required this.userrepoimplobj, required this.datamodel, required this.interceptorappdatasourceobj});
+  const MyApp({super.key, required this.datamodel, required this.interceptorappdatasourceobj});
 
   // This widget is the root of your application.
   @override
@@ -56,7 +52,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ConnectivityBloc()),
         BlocProvider(create: (context) => Userbloc(
             fetchsingleuserUsecase: getItInstance<FetchsingleuserUsecase>(),
-            fetchallusersUsecase: getItInstance<FetchallusersUsecase>())
+            fetchallusersUsecase: getItInstance<FetchallusersUsecase>())..add(getallusersdata_event())
         ),
         BlocProvider(create: (context) => Postbloc(getuserusecaseinstance: getItInstance<Getuserusecase>())),
         BlocProvider(create: (context) => Listbloc(datamodel: datamodel))

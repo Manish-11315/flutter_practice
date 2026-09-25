@@ -61,6 +61,7 @@ class Displayuserlistscreen extends StatelessWidget {
                                       (BuildContext context, int index) {
                                         final datauser =
                                             state.userentity[index];
+                                        print("Data from api in UI : ================= $datauser");
                                         return Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: UsersdatalistWidget(
