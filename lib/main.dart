@@ -19,6 +19,7 @@ import 'package:flutter_project_practice/list_app/bloc/listBloc.dart';
 import 'package:flutter_project_practice/list_app/data/datamodel.dart';
 import 'package:flutter_project_practice/list_app/ui/screen/listScreenUI.dart';
 
+import 'api_app/core/di/di_init.dart';
 import 'api_app/presentation/screen/displayUserListScreen.dart';
 import 'di_practice/di_ui.dart';
 import 'interceptors_practice/app/screen_ui.dart';
@@ -26,7 +27,7 @@ import 'interceptors_practice/inceptor_class.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  setup();
+  setupApiDependency();
   final Dio getdioinstance = Diosource.create(url: "https://fake-store-api.mock.beeceptor.com/api/");
   final Dio postdioinstance = Diosource.create(url: "https://quickmock.dev/m/tBMReZjZXb2X/");
   final Userrepoimpl userrepoimplobj = Userrepoimpl(userdatasourceobj: Userdatasource(dioinstance: getdioinstance, postinstancedio: postdioinstance));
@@ -54,12 +55,12 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(providers: [
         BlocProvider(create: (context) => ConnectivityBloc()),
         BlocProvider(create: (context) => Userbloc(
-            fetchsingleuserUsecase: FetchsingleuserUsecase(repoobj: userrepoimplobj),
-            fetchallusersUsecase: FetchallusersUsecase(userrepoobj: userrepoimplobj))..add(getallusersdata_event())
+            fetchsingleuserUsecase: getItInstance<FetchsingleuserUsecase>(),
+            fetchallusersUsecase: getItInstance<FetchallusersUsecase>())
         ),
-        BlocProvider(create: (context) => Postbloc(getuserusecaseinstance: Getuserusecase(userrepoobj: userrepoimplobj))),
+        BlocProvider(create: (context) => Postbloc(getuserusecaseinstance: getItInstance<Getuserusecase>())),
         BlocProvider(create: (context) => Listbloc(datamodel: datamodel))
-      ], child: /*ScreenUi(interceptorappdatasourceobj: interceptorAppDatasource(),)),*/DiUi())
+      ], child: /*ScreenUi(interceptorappdatasourceobj: interceptorAppDatasource(),)),*/Displayuserlistscreen())
     );
   }
 }
