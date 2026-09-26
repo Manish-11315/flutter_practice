@@ -4,7 +4,9 @@ import 'package:flutter_project_practice/api_app/domain/usecases/fetchallusers_u
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchsingleuser_usecase.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userbloc_events.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userbloc_states.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class Userbloc extends Bloc<UserblocEvents, UserblocStates> {
   final FetchallusersUsecase fetchallusersUsecase;
   final FetchsingleuserUsecase fetchsingleuserUsecase;

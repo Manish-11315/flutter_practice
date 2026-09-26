@@ -7,6 +7,7 @@ import 'package:flutter_project_practice/api_app/domain/usecases/fetchsingleuser
 import 'package:flutter_project_practice/api_app/domain/usecases/getUserUseCase.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userBloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:injectable/injectable.dart';
 
 var getItInstance = GetIt.instance;
 
@@ -40,3 +41,10 @@ void setupApiDependency() {
     ),
   );
 }
+
+@InjectableInit(
+  initializerName: "init",
+  preferRelativeImports: true,
+  asExtension: true
+)
+void injectdependency() => getItInstance.init();

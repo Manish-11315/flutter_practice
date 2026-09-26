@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter_project_practice/api_app/data/models/orders_model/orderinfo_model.dart';
 import 'package:flutter_project_practice/api_app/data/models/post_api_models/postApiModel.dart';
 import 'package:flutter_project_practice/api_app/data/models/products_model/productsmodel.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class Userdatasource {
   final Dio dioinstance;
   final Dio postinstancedio;

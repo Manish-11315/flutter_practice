@@ -1,9 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/post_api_bloc/postbloc_events.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/post_api_bloc/postbloc_states.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../domain/usecases/getUserUseCase.dart';
 
+@injectable
 class Postbloc extends Bloc<PostblocEvents, PostblocStates> {
   final Getuserusecase getuserusecaseinstance;
 
