@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_project_practice/api_app/data/datasources/diosource.dart';
 import 'package:flutter_project_practice/api_app/data/datasources/userDataSource.dart';
 import 'package:flutter_project_practice/api_app/data/repo_impl/userRepoImpl.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchallusers_usecase.dart';
@@ -27,7 +26,8 @@ import 'interceptors_practice/inceptor_class.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  setupApiDependency();
+  // setupApiDependency();
+  injectdependency();
   List<Datamodel> datamodelobj = [];
   final interceptorAppDatasource interceptorobj = interceptorAppDatasource();
   runApp(MyApp(datamodel: datamodelobj,interceptorappdatasourceobj: interceptorobj,));

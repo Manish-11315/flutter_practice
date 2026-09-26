@@ -4,12 +4,15 @@ import 'package:flutter_project_practice/api_app/data/models/post_api_models/pos
 import 'package:flutter_project_practice/api_app/data/models/products_model/productsmodel.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@lazySingleton
 class Userdatasource {
   final Dio dioinstance;
   final Dio postinstancedio;
 
-  Userdatasource({required this.dioinstance, required this.postinstancedio});
+  Userdatasource({
+    @Named("getdioinstance") required this.dioinstance,
+    @Named("postdioinstance") required this.postinstancedio,
+  });
 
   Future<List<productsModel>> getAllUsersData() async {
     try {
@@ -64,13 +67,12 @@ class Userdatasource {
     try {
       final res = await postinstancedio.post(
         "orders",
-        data:
-          Postapimodel(
-            id: id,
-            name: name,
-            email: email,
-            created_at: createdAt,
-          ).toJson(),
+        data: Postapimodel(
+          id: id,
+          name: name,
+          email: email,
+          created_at: createdAt,
+        ).toJson(),
       );
       final data = res.data;
       print("Post Data : $data");

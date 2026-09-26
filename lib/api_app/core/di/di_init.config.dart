@@ -14,7 +14,7 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../../data/datasources/diosource.dart' as _i428;
+import '../../data/datasources/apimodule.dart' as _i409;
 import '../../data/datasources/userDataSource.dart' as _i181;
 import '../../data/repo_impl/userRepoImpl.dart' as _i303;
 import '../../domain/repo/userRepo.dart' as _i342;
@@ -31,11 +31,19 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.singleton<_i428.Diosource>(() => _i428.Diosource());
-    gh.singleton<_i181.Userdatasource>(
+    final apimodule = _$Apimodule();
+    gh.lazySingleton<_i361.Dio>(
+      () => apimodule.postdio,
+      instanceName: 'postdioinstance',
+    );
+    gh.lazySingleton<_i361.Dio>(
+      () => apimodule.getdio,
+      instanceName: 'getdioinstance',
+    );
+    gh.lazySingleton<_i181.Userdatasource>(
       () => _i181.Userdatasource(
-        dioinstance: gh<_i361.Dio>(),
-        postinstancedio: gh<_i361.Dio>(),
+        dioinstance: gh<_i361.Dio>(instanceName: 'getdioinstance'),
+        postinstancedio: gh<_i361.Dio>(instanceName: 'postdioinstance'),
       ),
     );
     gh.singleton<_i342.Userrepo>(
@@ -62,3 +70,5 @@ extension GetItInjectableX on _i174.GetIt {
     return this;
   }
 }
+
+class _$Apimodule extends _i409.Apimodule {}
