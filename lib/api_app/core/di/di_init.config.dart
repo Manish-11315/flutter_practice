@@ -14,6 +14,7 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../../di_practice/classes_demo.dart' as _i823;
 import '../../data/datasources/userDataSource.dart' as _i181;
 import '../../data/repo_impl/userRepoImpl.dart' as _i303;
 import '../../domain/repo/userRepo.dart' as _i342;
@@ -36,9 +37,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => apimodule.postdio,
       instanceName: 'postdioinstance',
     );
+    gh.lazySingleton<_i823.demo1>(() => _i823.demo2());
     gh.lazySingleton<_i361.Dio>(
       () => apimodule.getdio,
       instanceName: 'getdioinstance',
+    );
+    gh.lazySingleton<_i823.demo3>(
+      () => _i823.demo3(demo2instance: gh<_i823.demo2>()),
     );
     gh.lazySingleton<_i181.Userdatasource>(
       () => _i181.Userdatasource(
@@ -48,6 +53,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i342.Userrepo>(
       () => _i303.Userrepoimpl(userdatasourceobj: gh<_i181.Userdatasource>()),
+    );
+    gh.lazySingleton<_i823.demo4>(
+      () => _i823.demo4(demo3instance: gh<_i823.demo3>()),
+    );
+    gh.lazySingleton<_i823.demo5>(
+      () => _i823.demo5(demo3instance: gh<_i823.demo3>()),
     );
     gh.singleton<_i119.FetchsingleuserUsecase>(
       () => _i119.FetchsingleuserUsecase(repoobj: gh<_i342.Userrepo>()),

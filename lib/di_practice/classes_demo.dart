@@ -1,9 +1,8 @@
 import 'package:injectable/injectable.dart';
 
-@LazySingleton(as: demo2)
 abstract class demo1{}
 
-@lazySingleton
+@LazySingleton(as: demo1)
 class demo2 extends demo1{}
 
 @lazySingleton

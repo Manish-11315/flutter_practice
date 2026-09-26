@@ -23,6 +23,7 @@ import '../api_app/domain/usecases/fetchsingleuser_usecase.dart' as _i740;
 import '../api_app/domain/usecases/getUserUseCase.dart' as _i104;
 import '../api_app/presentation/bloc/order_bloc/userBloc.dart' as _i1007;
 import '../api_app/presentation/bloc/post_api_bloc/postBloc.dart' as _i489;
+import 'classes_demo.dart' as _i866;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -36,9 +37,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => apimodule.postdio,
       instanceName: 'postdioinstance',
     );
+    gh.lazySingleton<_i866.demo1>(() => _i866.demo2());
     gh.lazySingleton<_i361.Dio>(
       () => apimodule.getdio,
       instanceName: 'getdioinstance',
+    );
+    gh.lazySingleton<_i866.demo3>(
+      () => _i866.demo3(demo2instance: gh<_i866.demo2>()),
     );
     gh.lazySingleton<_i250.Userdatasource>(
       () => _i250.Userdatasource(
@@ -48,6 +53,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i898.Userrepo>(
       () => _i729.Userrepoimpl(userdatasourceobj: gh<_i250.Userdatasource>()),
+    );
+    gh.lazySingleton<_i866.demo4>(
+      () => _i866.demo4(demo3instance: gh<_i866.demo3>()),
+    );
+    gh.lazySingleton<_i866.demo5>(
+      () => _i866.demo5(demo3instance: gh<_i866.demo3>()),
     );
     gh.singleton<_i740.FetchsingleuserUsecase>(
       () => _i740.FetchsingleuserUsecase(repoobj: gh<_i898.Userrepo>()),

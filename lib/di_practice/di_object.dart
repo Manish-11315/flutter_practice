@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_project_practice/api_app/core/di/di_init.config.dart';
+import 'package:flutter_project_practice/di_practice/di_object.config.dart';
 import 'package:flutter_project_practice/di_practice/test_class.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
@@ -19,5 +19,5 @@ void setup(){
     asExtension: true,
 )
 void demoDi(){
-  demoinjectableclass() => getInstance.init();
+  demoinjectableclass() => getInstance.DemoDi();
 }
