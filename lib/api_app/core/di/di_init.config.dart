@@ -14,7 +14,6 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../../data/datasources/apimodule.dart' as _i409;
 import '../../data/datasources/userDataSource.dart' as _i181;
 import '../../data/repo_impl/userRepoImpl.dart' as _i303;
 import '../../domain/repo/userRepo.dart' as _i342;
@@ -23,6 +22,7 @@ import '../../domain/usecases/fetchsingleuser_usecase.dart' as _i119;
 import '../../domain/usecases/getUserUseCase.dart' as _i372;
 import '../../presentation/bloc/order_bloc/userBloc.dart' as _i1052;
 import '../../presentation/bloc/post_api_bloc/postBloc.dart' as _i74;
+import '../api/apimodule.dart' as _i176;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -71,4 +71,4 @@ extension GetItInjectableX on _i174.GetIt {
   }
 }
 
-class _$Apimodule extends _i409.Apimodule {}
+class _$Apimodule extends _i176.Apimodule {}
