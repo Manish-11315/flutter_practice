@@ -21,4 +21,10 @@ class AuthService {
     return await firebaseinstance.sendPasswordResetEmail(email: email);
   }
 
+  Future<void> updateusername(String username) async{
+    return await currentUser?.updateDisplayName(username);
+  }
+
+
+
 }
