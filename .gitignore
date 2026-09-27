@@ -45,6 +45,6 @@ app.*.map.json
 /android/app/release
 
 #My Files
-C:\Users\manis\AndroidStudioProjects\flutter_project_practice\lib\firebase_options.dart
-android\app\google-services.json
-C:\Users\manis\AndroidStudioProjects\flutter_project_practice\firebase.json
+lib/firebase_options.dart
+android/app/google-services.json
+firebase.json
