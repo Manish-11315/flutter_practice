@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project_practice/api_app/data/datasources/userDataSource.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_project_practice/api_app/presentation/screen/postApiScre
 import 'package:flutter_project_practice/connectivity_app/presentation/bloc/connectivity_bloc.dart';
 import 'package:flutter_project_practice/connectivity_app/presentation/screen/connectivity_homescreen.dart';
 import 'package:flutter_project_practice/di_practice/di_object.dart';
+import 'package:flutter_project_practice/firebase_options.dart';
 import 'package:flutter_project_practice/interceptors_practice/app/datasource.dart';
 import 'package:flutter_project_practice/list_app/bloc/listBloc.dart';
 import 'package:flutter_project_practice/list_app/data/datamodel.dart';
@@ -24,12 +26,16 @@ import 'di_practice/di_ui.dart';
 import 'interceptors_practice/app/screen_ui.dart';
 import 'interceptors_practice/inceptor_class.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   // setupApiDependency();
   injectdependency();
   List<Datamodel> datamodelobj = [];
   final interceptorAppDatasource interceptorobj = interceptorAppDatasource();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform
+  );
   runApp(MyApp(datamodel: datamodelobj,interceptorappdatasourceobj: interceptorobj,));
 }
 
