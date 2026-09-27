@@ -22,9 +22,14 @@ class AuthService {
   }
 
   Future<void> updateusername(String username) async{
-    return await currentUser?.updateDisplayName(username);
+    return await currentUser!.updateDisplayName(username);
   }
 
-
+  Future<void> deleteuser(String email, String password) async{
+    AuthCredential authCredentials = EmailAuthProvider.credential(email: email, password: password);
+    await currentUser!.reauthenticateWithCredential(authCredentials);
+    await currentUser!.delete();
+    await firebaseinstance.signOut();
+  }
 
 }
