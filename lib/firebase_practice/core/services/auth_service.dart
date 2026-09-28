@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 
+ValueNotifier<AuthService> valueNotifier = ValueNotifier(AuthService());
 class AuthService {
   final FirebaseAuth firebaseinstance = FirebaseAuth.instance;
   User? get currentUser => firebaseinstance.currentUser;

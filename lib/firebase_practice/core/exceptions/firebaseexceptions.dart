@@ -12,7 +12,7 @@ class FirebaseExceptions implements Exception {
   }
 }
 
-FirebaseExceptions convertToAuthExceptions(FirebaseAuthException exception) {
+FirebaseExceptions convertToFirebaseExceptions(FirebaseAuthException exception) {
   switch (exception.code) {
     case 'invalid-email':
       return FirebaseExceptions(
