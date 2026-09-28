@@ -21,4 +21,12 @@ class firebaseappDatasource {
     return await authServiceinstance.changeUsername(newUsername);
   }
 
+  Future<void> userupdatepassword({required String email, required String currentpassword, required String newpassword}) async{
+    return await authServiceinstance.changeUserPassword(email, currentpassword, newpassword);
+  }
+
+  Future<void> useraccountdelete({required String email, required String password}) async {
+    return await authServiceinstance.deleteUserAccount(email, password);
+  }
+
 }
