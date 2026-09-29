@@ -7,13 +7,13 @@ class Userrepoimpl extends UserRepo{
   Userrepoimpl({required this.firebasedatasourceinstance});
 
   @override
-  Future<void> changeUserPassword({required String email, required String currentpassword, required String newpassword}) {
-    return firebasedatasourceinstance.userupdatepassword(email: email, currentpassword: currentpassword, newpassword: newpassword);
+  Future<void> changeUserPassword({required String email, required String currentpassword, required String newpassword}) async{
+    return await firebasedatasourceinstance.userupdatepassword(email: email, currentpassword: currentpassword, newpassword: newpassword);
   }
 
   @override
-  Future<void> changeUsername({required String newusername}) {
-    return firebasedatasourceinstance.usernamechange(newUsername: newusername);
+  Future<void> changeUsername({required String newusername})async {
+    return await firebasedatasourceinstance.usernamechange(newUsername: newusername);
   }
 
   @override
