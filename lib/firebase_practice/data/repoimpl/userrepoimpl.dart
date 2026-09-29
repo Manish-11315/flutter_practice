@@ -17,23 +17,23 @@ class Userrepoimpl extends UserRepo{
   }
 
   @override
-  Future<void> deleteUserAccount({required String email, required String password}) {
-    return firebasedatasourceinstance.useraccountdelete(email: email, password: password);
+  Future<void> deleteUserAccount({required String email, required String password})async {
+    return await firebasedatasourceinstance.useraccountdelete(email: email, password: password);
   }
 
   @override
-  Future<UserCredential> loginUser({required String email, required String password}) {
-    return firebasedatasourceinstance.userloginfun(email: email, password: password);
+  Future<UserCredential> loginUser({required String email, required String password}) async {
+    return await firebasedatasourceinstance.userloginfun(email: email, password: password);
   }
 
   @override
-  Future<void> logoutUser() {
-    return firebasedatasourceinstance.userlogout();
+  Future<void> logoutUser() async{
+    return await firebasedatasourceinstance.userlogout();
   }
 
   @override
-  Future<UserCredential> registerUser({required String email, required String password}) {
-    return firebasedatasourceinstance.userregisterfun(email: email, password: password);
+  Future<UserCredential> registerUser({required String email, required String password})async {
+    return await firebasedatasourceinstance.userregisterfun(email: email, password: password);
   }
 
 }
