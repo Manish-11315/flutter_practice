@@ -12,16 +12,28 @@ class firebaseappDatasource {
     }on FirebaseAuthException catch(firebaseexception){
       throw convertToFirebaseExceptions(firebaseexception);
     }catch (err){
-      throw Exception("An Error Occurred");
+      throw Exception("An Error Occurred : ${err.toString()}");
     }
   }
 
   Future<UserCredential> userregisterfun({required String email, required String password}) async{
-    return await authServiceinstance.registerUser(email, password);
+    try{
+      return await authServiceinstance.registerUser(email, password);
+    }on FirebaseAuthException catch(firebaseexception){
+      throw convertToFirebaseExceptions(firebaseexception);
+    }catch(err){
+      throw Exception("An Error Occurred : ${err.toString()}");
+    }
   }
 
   Future<void> userlogout() async{
-    return await authServiceinstance.logoutUser();
+    try{
+      return await authServiceinstance.logoutUser();
+    }on FirebaseAuthException catch(firebaseexception){
+      throw convertToFirebaseExceptions(firebaseexception);
+    }catch(err){
+      throw Exception("An Error Occurred : ${err.toString()}");
+    }
   }
 
   Future<void> usernamechange({required String newUsername}) async{
