@@ -40,22 +40,57 @@ class Firebloc extends Bloc<fireEvents, fireStates> {
       emit(sucessFireState(userCredential: response));
 
     }catch(err){
-
+      emit(errorFireState(errormsg: err.toString()));
     }
   }
-  void userregisterEventHandler(registerUserEvent event, Emitter<fireStates> emit){
+  void userregisterEventHandler(registerUserEvent event, Emitter<fireStates> emit)async{
+    emit(loadingFireState());
+    try{
+      final response = await registerusecaseinstance.call(email: event.email, password: event.password);
+      emit(sucessFireState(userCredential: response));
 
+    }catch(err){
+      emit(errorFireState(errormsg: err.toString()));
+    }
   }
-  void userlogoutEventHandler(logoutUserEvent event, Emitter<fireStates> emit){
+  void userlogoutEventHandler(logoutUserEvent event, Emitter<fireStates> emit)async{
+    emit(loadingFireState());
+    try{
+      final response = await logoutusecaseinstance.call();
+      emit(sucessFireState());
 
+    }catch(err){
+      emit(errorFireState(errormsg: err.toString()));
+    }
   }
-  void userpasswordUpdateEventHandler(updateUserPasswordEvent event, Emitter<fireStates> emit){
+  void userpasswordUpdateEventHandler(updateUserPasswordEvent event, Emitter<fireStates> emit)async{
+    emit(loadingFireState());
+    try{
+      final response = await changeuserpasswordinstance.call(email: event.email, currentpassword: event.currentPassword, newpassword:  event.newPassword);
+      emit(sucessFireState());
 
+    }catch(err){
+      emit(errorFireState(errormsg: err.toString()));
+    }
   }
-  void usernameUpdateEventHandler(updateUsernameEvent event, Emitter<fireStates> emit){
+  void usernameUpdateEventHandler(updateUsernameEvent event, Emitter<fireStates> emit)async{
+    emit(loadingFireState());
+    try{
+      final response = await changeusernameusecaseinstance.call(newusername: event.newUsername);
+      emit(sucessFireState());
 
+    }catch(err){
+      emit(errorFireState(errormsg: err.toString()));
+    }
   }
-  void userDeleteEventHandler(deleteUserEvent event, Emitter<fireStates> emit){
+  void userDeleteEventHandler(deleteUserEvent event, Emitter<fireStates> emit)async{
+    emit(loadingFireState());
+    try{
+      final response = await deleteuseraccountusecaseinstance.call(email: event.email, password: event.password);
+      emit(sucessFireState());
 
+    }catch(err){
+      emit(errorFireState(errormsg: err.toString()));
+    }
   }
 }

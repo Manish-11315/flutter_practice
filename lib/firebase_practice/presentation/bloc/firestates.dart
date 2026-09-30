@@ -7,8 +7,8 @@ class initialFireState extends fireStates{}
 class loadingFireState extends fireStates{}
 
 class sucessFireState extends fireStates{
-  final UserCredential userCredential;
-  sucessFireState({required this.userCredential});
+  final UserCredential? userCredential;
+  sucessFireState({this.userCredential});
 }
 
 class errorFireState extends fireStates{
