@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:injectable/injectable.dart';
 
-ValueNotifier<AuthService> valueNotifier = ValueNotifier(AuthService());
+@lazySingleton
 class AuthService {
   final FirebaseAuth firebaseinstance = FirebaseAuth.instance;
   User? get currentUser => firebaseinstance.currentUser;

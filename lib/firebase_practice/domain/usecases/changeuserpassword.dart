@@ -1,5 +1,8 @@
+import 'package:injectable/injectable.dart';
+
 import '../repository/userrepo.dart';
 
+@lazySingleton
 class Changeuserpassword {
   final UserRepo userRepoinstance;
   Changeuserpassword({required this.userRepoinstance});

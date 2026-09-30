@@ -15,6 +15,7 @@ import 'package:flutter_project_practice/connectivity_app/presentation/bloc/conn
 import 'package:flutter_project_practice/connectivity_app/presentation/screen/connectivity_homescreen.dart';
 import 'package:flutter_project_practice/di_practice/di_object.dart';
 import 'package:flutter_project_practice/firebase_options.dart';
+import 'package:flutter_project_practice/firebase_practice/core/di/firedi.dart';
 import 'package:flutter_project_practice/interceptors_practice/app/datasource.dart';
 import 'package:flutter_project_practice/list_app/bloc/listBloc.dart';
 import 'package:flutter_project_practice/list_app/data/datamodel.dart';
@@ -23,13 +24,14 @@ import 'package:flutter_project_practice/list_app/ui/screen/listScreenUI.dart';
 import 'api_app/core/di/di_init.dart';
 import 'api_app/presentation/screen/displayUserListScreen.dart';
 import 'di_practice/di_ui.dart';
+import 'firebase_practice/presentation/screens/homescreen.dart';
 import 'interceptors_practice/app/screen_ui.dart';
 import 'interceptors_practice/inceptor_class.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   // setupApiDependency();
-  injectdependency();
+  setupfirebaseAppDependency();
   List<Datamodel> datamodelobj = [];
   final interceptorAppDatasource interceptorobj = interceptorAppDatasource();
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,6 +52,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.system,
       theme: ThemeData(
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -62,7 +66,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => Postbloc(getuserusecaseinstance: getItInstance<Getuserusecase>())),
         BlocProvider(create: (context) => Listbloc(datamodel: datamodel))
-      ], child: /*ScreenUi(interceptorappdatasourceobj: interceptorAppDatasource(),)),*/Displayuserlistscreen())
+      ], child: /*ScreenUi(interceptorappdatasourceobj: interceptorAppDatasource(),)),Displayuserlistscreen()*/homeScreen())
     );
   }
 }

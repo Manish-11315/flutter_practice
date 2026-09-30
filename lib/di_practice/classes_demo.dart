@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 
+/*
 abstract class demo1{}
 
 @LazySingleton(as: demo1)
@@ -21,4 +22,4 @@ class demo4{
 class demo5{
   final demo3 demo3instance;
   demo5({required this.demo3instance});
-}
+}*/

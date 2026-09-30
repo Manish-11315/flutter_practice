@@ -6,9 +6,11 @@ import 'package:flutter_project_practice/firebase_practice/domain/usecases/login
 import 'package:flutter_project_practice/firebase_practice/domain/usecases/logoutusecase.dart';
 import 'package:flutter_project_practice/firebase_practice/domain/usecases/registerusecase.dart';
 import 'package:flutter_project_practice/firebase_practice/presentation/bloc/firestates.dart';
+import 'package:injectable/injectable.dart';
 
 import 'fireevents.dart';
 
+@injectable
 class Firebloc extends Bloc<fireEvents, fireStates> {
   final Loginusecase loginusecaseinstance;
   final Registerusecase registerusecaseinstance;

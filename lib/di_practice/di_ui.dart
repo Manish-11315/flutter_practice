@@ -16,9 +16,9 @@ class _DiUiState extends State<DiUi> {
       body: Center(
         child: MaterialButton(
           onPressed: () {
-            final int? id = getInstance<TestClass>().id;
+            /*final int? id = getInstance<TestClass>().id;
             final String? name = getInstance<TestClass>().name;
-            debugPrint("ID : $id ,  \t name : $name ");
+            debugPrint("ID : $id ,  \t name : $name ");*/
           },
           child: Text("Send Data"),
         ),

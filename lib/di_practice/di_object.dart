@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_project_practice/di_practice/di_object.config.dart';
 import 'package:flutter_project_practice/di_practice/test_class.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
+/*
 var getInstance = GetIt.instance;
 
 void setup(){
@@ -20,4 +20,4 @@ void setup(){
 )
 void demoDi(){
   demoinjectableclass() => getInstance.DemoDi();
-}
+}*/

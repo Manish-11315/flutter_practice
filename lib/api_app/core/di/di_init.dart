@@ -1,4 +1,3 @@
-import 'package:flutter_project_practice/api_app/core/di/di_init.config.dart';
 import 'package:flutter_project_practice/api_app/data/datasources/diosource.dart';
 import 'package:flutter_project_practice/api_app/data/datasources/userDataSource.dart';
 import 'package:flutter_project_practice/api_app/data/repo_impl/userRepoImpl.dart';
@@ -43,9 +42,11 @@ void setupApiDependency() {
   );
 }
 
+/*
 @InjectableInit(
   initializerName: "init",
   preferRelativeImports: true,
   asExtension: true
 )
 void injectdependency() => getItInstance.init();
+*/

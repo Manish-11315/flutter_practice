@@ -1,5 +1,8 @@
+import 'package:injectable/injectable.dart';
+
 import '../repository/userrepo.dart';
 
+@lazySingleton
 class Changeusernameusecase {
   final UserRepo userRepoinstance;
   Changeusernameusecase({required this.userRepoinstance});

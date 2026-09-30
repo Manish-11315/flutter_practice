@@ -1,5 +1,8 @@
+import 'package:injectable/injectable.dart';
+
 import '../repository/userrepo.dart';
 
+@lazySingleton
 class Deleteuseraccountusecase {
   final UserRepo userRepoinstance;
   Deleteuseraccountusecase({required this.userRepoinstance});

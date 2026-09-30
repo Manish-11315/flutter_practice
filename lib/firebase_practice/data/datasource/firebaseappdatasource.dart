@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_project_practice/firebase_practice/core/exceptions/firebaseexceptions.dart';
 import 'package:flutter_project_practice/firebase_practice/core/services/auth_service.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class firebaseappDatasource {
   final AuthService authServiceinstance;
   firebaseappDatasource({required this.authServiceinstance});
