@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_project_practice/firebase_practice/domain/usecases/changeusernameusecase.dart';
 import 'package:flutter_project_practice/firebase_practice/domain/usecases/changeuserpassword.dart';
 import 'package:flutter_project_practice/firebase_practice/domain/usecases/deleteuseraccountusecase.dart';

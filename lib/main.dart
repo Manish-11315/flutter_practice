@@ -1,50 +1,51 @@
-import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_project_practice/api_app/data/datasources/userDataSource.dart';
-import 'package:flutter_project_practice/api_app/data/repo_impl/userRepoImpl.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchallusers_usecase.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/fetchsingleuser_usecase.dart';
 import 'package:flutter_project_practice/api_app/domain/usecases/getUserUseCase.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userBloc.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/order_bloc/userbloc_events.dart';
 import 'package:flutter_project_practice/api_app/presentation/bloc/post_api_bloc/postBloc.dart';
-import 'package:flutter_project_practice/api_app/presentation/screen/postApiScreenUi.dart';
 import 'package:flutter_project_practice/connectivity_app/presentation/bloc/connectivity_bloc.dart';
-import 'package:flutter_project_practice/connectivity_app/presentation/screen/connectivity_homescreen.dart';
-import 'package:flutter_project_practice/di_practice/di_object.dart';
 import 'package:flutter_project_practice/firebase_options.dart';
 import 'package:flutter_project_practice/firebase_practice/core/di/firedi.dart';
+import 'package:flutter_project_practice/firebase_practice/domain/usecases/changeusernameusecase.dart';
+import 'package:flutter_project_practice/firebase_practice/domain/usecases/changeuserpassword.dart';
+import 'package:flutter_project_practice/firebase_practice/domain/usecases/deleteuseraccountusecase.dart';
+import 'package:flutter_project_practice/firebase_practice/domain/usecases/loginusecase.dart';
+import 'package:flutter_project_practice/firebase_practice/domain/usecases/logoutusecase.dart';
+import 'package:flutter_project_practice/firebase_practice/domain/usecases/registerusecase.dart';
+import 'package:flutter_project_practice/firebase_practice/presentation/bloc/firebloc.dart';
 import 'package:flutter_project_practice/interceptors_practice/app/datasource.dart';
 import 'package:flutter_project_practice/list_app/bloc/listBloc.dart';
 import 'package:flutter_project_practice/list_app/data/datamodel.dart';
-import 'package:flutter_project_practice/list_app/ui/screen/listScreenUI.dart';
 
 import 'api_app/core/di/di_init.dart';
-import 'api_app/presentation/screen/displayUserListScreen.dart';
-import 'di_practice/di_ui.dart';
-import 'firebase_practice/presentation/screens/homescreen.dart';
-import 'interceptors_practice/app/screen_ui.dart';
-import 'interceptors_practice/inceptor_class.dart';
+import 'firebase_practice/presentation/screens/registerscreen.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // setupApiDependency();
   setupfirebaseAppDependency();
   List<Datamodel> datamodelobj = [];
   final interceptorAppDatasource interceptorobj = interceptorAppDatasource();
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(
+    MyApp(datamodel: datamodelobj, interceptorappdatasourceobj: interceptorobj),
   );
-  runApp(MyApp(datamodel: datamodelobj,interceptorappdatasourceobj: interceptorobj,));
 }
 
 class MyApp extends StatelessWidget {
   final List<Datamodel> datamodel;
   final interceptorAppDatasource interceptorappdatasourceobj;
-  const MyApp({super.key, required this.datamodel, required this.interceptorappdatasourceobj});
+
+  const MyApp({
+    super.key,
+    required this.datamodel,
+    required this.interceptorappdatasourceobj,
+  });
 
   // This widget is the root of your application.
   @override
@@ -55,18 +56,37 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.system,
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: MultiBlocProvider(providers: [
-        BlocProvider(create: (context) => ConnectivityBloc()),
-        BlocProvider(create: (context) => Userbloc(
-            fetchsingleuserUsecase: getItInstance<FetchsingleuserUsecase>(),
-            fetchallusersUsecase: getItInstance<FetchallusersUsecase>())..add(getallusersdata_event())
-        ),
-        BlocProvider(create: (context) => Postbloc(getuserusecaseinstance: getItInstance<Getuserusecase>())),
-        BlocProvider(create: (context) => Listbloc(datamodel: datamodel))
-      ], child: /*ScreenUi(interceptorappdatasourceobj: interceptorAppDatasource(),)),Displayuserlistscreen()*/homeScreen())
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => ConnectivityBloc()),
+          BlocProvider(
+            create: (context) => Userbloc(
+              fetchsingleuserUsecase: getItInstance<FetchsingleuserUsecase>(),
+              fetchallusersUsecase: getItInstance<FetchallusersUsecase>(),
+            )..add(getallusersdata_event()),
+          ),
+          BlocProvider(
+            create: (context) => Postbloc(
+              getuserusecaseinstance: getItInstance<Getuserusecase>(),
+            ),
+          ),
+          BlocProvider(create: (context) => Listbloc(datamodel: datamodel)),
+          BlocProvider(
+            create: (context) => Firebloc(
+              loginusecaseinstance: firediinstance<Loginusecase>(),
+              registerusecaseinstance: firediinstance<Registerusecase>(),
+              deleteuseraccountusecaseinstance: firediinstance<Deleteuseraccountusecase>(),
+              changeusernameusecaseinstance: firediinstance<Changeusernameusecase>(),
+              changeuserpasswordinstance: firediinstance<Changeuserpassword>(),
+              logoutusecaseinstance: firediinstance<Logoutusecase>(),
+            ),
+          ),
+        ],
+        child: /*ScreenUi(interceptorappdatasourceobj: interceptorAppDatasource(),)),Displayuserlistscreen()*/
+            registerScreen(),
+      ),
     );
   }
 }

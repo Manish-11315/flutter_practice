@@ -21,7 +21,7 @@ class _homeScreenState extends State<homeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(children: screens,index: selectedState,),
+      body: IndexedStack(index: selectedState,children: screens,),
       bottomNavigationBar: bottomNavBar(
         ontap: (index){
           setState(() {
