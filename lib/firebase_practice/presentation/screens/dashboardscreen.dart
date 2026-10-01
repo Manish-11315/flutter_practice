@@ -4,7 +4,7 @@ import 'package:flutter_project_practice/firebase_practice/presentation/bloc/fir
 import 'package:flutter_project_practice/firebase_practice/presentation/bloc/firestates.dart';
 
 class dashBoard extends StatelessWidget {
-  const dashBoard({super.key});
+  dashBoard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class dashBoard extends StatelessWidget {
               if (state is sucessFireState) {
                 return Center(
                   child: Text(
-                    "Welcome : ${state.userCredential!.user!.displayName}",
+                    "Welcome : ${state.userCredential!.user!.email}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.redAccent,

@@ -23,7 +23,6 @@ import 'package:flutter_project_practice/list_app/data/datamodel.dart';
 
 import 'api_app/core/di/di_init.dart';
 import 'firebase_practice/presentation/screens/loginscreen.dart';
-import 'firebase_practice/presentation/screens/registerscreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,42 +50,44 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      darkTheme: ThemeData.dark(),
-      themeMode: ThemeMode.system,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => ConnectivityBloc()),
-          BlocProvider(
-            create: (context) => Userbloc(
-              fetchsingleuserUsecase: getItInstance<FetchsingleuserUsecase>(),
-              fetchallusersUsecase: getItInstance<FetchallusersUsecase>(),
-            )..add(getallusersdata_event()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => ConnectivityBloc()),
+        BlocProvider(
+          create: (context) => Userbloc(
+            fetchsingleuserUsecase: getItInstance<FetchsingleuserUsecase>(),
+            fetchallusersUsecase: getItInstance<FetchallusersUsecase>(),
+          )..add(getallusersdata_event()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              Postbloc(getuserusecaseinstance: getItInstance<Getuserusecase>()),
+        ),
+        BlocProvider(create: (context) => Listbloc(datamodel: datamodel)),
+        BlocProvider(
+          create: (context) => Firebloc(
+            loginusecaseinstance: firediinstance<Loginusecase>(),
+            registerusecaseinstance: firediinstance<Registerusecase>(),
+            deleteuseraccountusecaseinstance:
+                firediinstance<Deleteuseraccountusecase>(),
+            changeusernameusecaseinstance:
+                firediinstance<Changeusernameusecase>(),
+            changeuserpasswordinstance: firediinstance<Changeuserpassword>(),
+            logoutusecaseinstance: firediinstance<Logoutusecase>(),
           ),
-          BlocProvider(
-            create: (context) => Postbloc(
-              getuserusecaseinstance: getItInstance<Getuserusecase>(),
-            ),
-          ),
-          BlocProvider(create: (context) => Listbloc(datamodel: datamodel)),
-          BlocProvider(
-            create: (context) => Firebloc(
-              loginusecaseinstance: firediinstance<Loginusecase>(),
-              registerusecaseinstance: firediinstance<Registerusecase>(),
-              deleteuseraccountusecaseinstance: firediinstance<Deleteuseraccountusecase>(),
-              changeusernameusecaseinstance: firediinstance<Changeusernameusecase>(),
-              changeuserpasswordinstance: firediinstance<Changeuserpassword>(),
-              logoutusecaseinstance: firediinstance<Logoutusecase>(),
-            ),
-          ),
-        ],
-        child: /*ScreenUi(interceptorappdatasourceobj: interceptorAppDatasource(),)),Displayuserlistscreen()*/
-        loginScreen(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        darkTheme: ThemeData.dark(),
+        themeMode: ThemeMode.system,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        ),
+        home:
+            /*ScreenUi(interceptorappdatasourceobj: interceptorAppDatasource(),)),Displayuserlistscreen()*/
+            loginScreen(),
       ),
     );
   }

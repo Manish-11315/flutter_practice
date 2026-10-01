@@ -6,9 +6,11 @@ import '../bloc/fireevents.dart';
 import '../bloc/firestates.dart';
 import '../widgets/textfield.dart';
 import 'homescreen.dart';
+
 class loginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
   loginScreen({super.key});
 
   @override
@@ -26,7 +28,17 @@ class loginScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Align(alignment: AlignmentGeometry.centerLeft,child: Text("User Login", style:  TextStyle(color: Colors.redAccent, fontSize: 40, fontWeight: FontWeight.bold),)),
+                child: Align(
+                  alignment: AlignmentGeometry.centerLeft,
+                  child: Text(
+                    "User Login",
+                    style: TextStyle(
+                      color: Colors.redAccent,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -46,7 +58,7 @@ class loginScreen extends StatelessWidget {
               SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
-                  onTapRegister(context);
+                  onTapLogin(context);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -57,7 +69,7 @@ class loginScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text("Register"),
+                      child: Text("Login"),
                     ),
                   ),
                 ),
@@ -67,19 +79,23 @@ class loginScreen extends StatelessWidget {
         },
         listener: (context, states) {
           if (states is errorFireState) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(states.errormsg)));
-          }else if (states is sucessFireState) {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(states.errormsg)));
+          } else if (states is sucessFireState) {
             final blocvalue = BlocProvider.of<Firebloc>(context);
-            BlocProvider.value(value: blocvalue,child: homeScreen(),);
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> homeScreen()));
-
+            BlocProvider.value(value: blocvalue, child: homeScreen());
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => homeScreen()),
+            );
           }
         },
       ),
     );
   }
 
-  void onTapRegister(BuildContext context) {
+  void onTapLogin(BuildContext context) {
     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
       return BlocProvider.of<Firebloc>(context).add(
         loginUserEvent(
