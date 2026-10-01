@@ -19,10 +19,6 @@ class registerScreen extends StatelessWidget {
         builder: (context, states) {
           if (states is loadingFireState) {
             return Center(child: CircularProgressIndicator());
-          } else if (states is sucessFireState) {
-            final blocvalue = BlocProvider.of<Firebloc>(context);
-            BlocProvider.value(value: blocvalue,child: homeScreen(),);
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> homeScreen()));
           }
 
           return Column(
@@ -69,6 +65,11 @@ class registerScreen extends StatelessWidget {
         listener: (context, states) {
           if (states is errorFireState) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(states.errormsg)));
+          }else if (states is sucessFireState) {
+            final blocvalue = BlocProvider.of<Firebloc>(context);
+            BlocProvider.value(value: blocvalue,child: homeScreen(),);
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> homeScreen()));
+
           }
         },
       ),

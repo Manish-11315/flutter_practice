@@ -22,6 +22,7 @@ import 'package:flutter_project_practice/list_app/bloc/listBloc.dart';
 import 'package:flutter_project_practice/list_app/data/datamodel.dart';
 
 import 'api_app/core/di/di_init.dart';
+import 'firebase_practice/presentation/screens/loginscreen.dart';
 import 'firebase_practice/presentation/screens/registerscreen.dart';
 
 void main() async {
@@ -85,7 +86,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: /*ScreenUi(interceptorappdatasourceobj: interceptorAppDatasource(),)),Displayuserlistscreen()*/
-            registerScreen(),
+        loginScreen(),
       ),
     );
   }

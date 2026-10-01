@@ -12,7 +12,7 @@ class textFieldWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(20)
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(top: 8.0, bottom: 8, right: 8, left: 20),
         child: TextFormField(
           decoration: InputDecoration(
             label: Text(hintname, style:  TextStyle(color: Colors.black),),
