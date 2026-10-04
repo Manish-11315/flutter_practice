@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
 class ContainerWidget extends StatelessWidget {
-  const ContainerWidget({super.key});
+  final String heading;
+  ContainerWidget({super.key, required this.heading});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.amberAccent,
-            blurRadius: 20,
-            blurStyle: BlurStyle.inner,
-            offset: Offset(0, 1)
-          ),
-          BoxShadow(
-            color: Colors.amberAccent,
-            blurRadius: 20,
-            blurStyle: BlurStyle.inner,
-            offset: Offset(0, 1)
-          ),
-          BoxShadow(
-            color: Colors.amberAccent,
-            blurRadius: 20,
-            blurStyle: BlurStyle.inner,
-            offset: Offset(0, 1)
-          ),
-        ]
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 50,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.amberAccent,
+              blurRadius: 1,
+              spreadRadius: 2,
+              blurStyle: BlurStyle.outer,
+              // offset: Offset(1, 1)
+            ),
+
+          ]
+        ),child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(heading, style:  TextStyle(fontSize: 20),),
+        ),
       ),
     );
   }
