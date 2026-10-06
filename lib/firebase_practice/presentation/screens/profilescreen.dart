@@ -14,7 +14,10 @@ class profileScreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: listoftitles.length,
                 itemBuilder: (context, index){
-                  return ContainerWidget(heading: listoftitles[index],);
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ContainerWidget(heading: listoftitles[index],),
+                  );
             }),
           )
         ],
