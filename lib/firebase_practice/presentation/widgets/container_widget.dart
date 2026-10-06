@@ -16,14 +16,15 @@ class ContainerWidget extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.amberAccent,
-              blurRadius: 1,
-              spreadRadius: 2,
+              blurRadius: 4,
+              spreadRadius: 1,
               blurStyle: BlurStyle.outer,
               // offset: Offset(1, 1)
             ),
           ],
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -33,7 +34,7 @@ class ContainerWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Text(heading, style: TextStyle(fontSize: 20)),
+                child: Icon(Icons.arrow_forward),
               ),
             ),
           ],
