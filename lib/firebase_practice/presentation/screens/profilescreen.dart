@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/container_widget.dart';
+import 'changepasswordscreen.dart';
 class profileScreen extends StatelessWidget {
   profileScreen({super.key});
   List<String> listoftitles = ["Change Password", "Delete Account", "Logout", "Login", "Change Username", "Register User"];
@@ -24,9 +25,9 @@ class profileScreen extends StatelessWidget {
       ),
     );
   }
-  void onTapPressed(int index){
+  void onTapPressed(int index, BuildContext context){
     if(index == 0){
-      Navigator.push(context, MaterialPageRoute(builder: (builder) => ));
+      Navigator.push(context, MaterialPageRoute(builder: (builder) => changePasswordScreen()));
     }
   }
 }
