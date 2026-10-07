@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/container_widget.dart';
 import 'changepasswordscreen.dart';
+import 'deleteaccountscreen.dart';
 class profileScreen extends StatelessWidget {
   profileScreen({super.key});
   List<String> listoftitles = ["Change Password", "Delete Account", "Logout", "Login", "Change Username", "Register User"];
@@ -29,7 +30,7 @@ class profileScreen extends StatelessWidget {
     if(index == 0){
       Navigator.push(context, MaterialPageRoute(builder: (builder) => changePasswordScreen()));
     }else if(index == 1){
-      Navigator
+      Navigator.push(context, MaterialPageRoute(builder: (builder) => deleteAccountScreen()));
     }
   }
 }
