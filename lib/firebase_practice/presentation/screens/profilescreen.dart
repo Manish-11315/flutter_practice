@@ -16,12 +16,17 @@ class profileScreen extends StatelessWidget {
                 itemBuilder: (context, index){
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: ContainerWidget(heading: listoftitles[index],),
+                    child: ContainerWidget(heading: listoftitles[index],ontap: ,),
                   );
             }),
           )
         ],
       ),
     );
+  }
+  void onTapPressed(int index){
+    if(index == 0){
+      Navigator.push(context, MaterialPageRoute(builder: (builder) => ));
+    }
   }
 }
