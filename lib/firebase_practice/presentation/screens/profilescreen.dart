@@ -28,6 +28,8 @@ class profileScreen extends StatelessWidget {
   void onTapPressed(int index, BuildContext context){
     if(index == 0){
       Navigator.push(context, MaterialPageRoute(builder: (builder) => changePasswordScreen()));
+    }else if(index == 1){
+      Navigator
     }
   }
 }
