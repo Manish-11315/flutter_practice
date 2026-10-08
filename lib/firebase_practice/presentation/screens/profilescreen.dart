@@ -31,6 +31,8 @@ class profileScreen extends StatelessWidget {
       Navigator.push(context, MaterialPageRoute(builder: (builder) => changePasswordScreen()));
     }else if(index == 1){
       Navigator.push(context, MaterialPageRoute(builder: (builder) => deleteAccountScreen()));
+    }else if(index == 2){
+      Navigator.push(context, MaterialPageRoute(builder: (builder) => ));
     }
   }
 }
