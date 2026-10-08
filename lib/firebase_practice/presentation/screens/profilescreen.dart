@@ -35,7 +35,7 @@ class profileScreen extends StatelessWidget {
     }else if(index == 2){
       Navigator.push(context, MaterialPageRoute(builder: (builder) => logoutScreen()));
     }else if(index == 3){
-
+      Navigator.push(context, MaterialPageRoute(builder: (builder) => ));
     }
   }
 }
