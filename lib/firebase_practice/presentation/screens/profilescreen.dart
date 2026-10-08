@@ -34,6 +34,8 @@ class profileScreen extends StatelessWidget {
       Navigator.push(context, MaterialPageRoute(builder: (builder) => deleteAccountScreen()));
     }else if(index == 2){
       Navigator.push(context, MaterialPageRoute(builder: (builder) => logoutScreen()));
-    }else if()
+    }else if(index == 3){
+
+    }
   }
 }
