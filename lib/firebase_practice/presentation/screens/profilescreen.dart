@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/container_widget.dart';
 import 'changepasswordscreen.dart';
+import 'changeusernamescreen.dart';
 import 'deleteaccountscreen.dart';
 import 'loginscreen.dart';
 import 'logoutscreen.dart';
@@ -38,7 +39,7 @@ class profileScreen extends StatelessWidget {
     }else if(index == 3){
       Navigator.push(context, MaterialPageRoute(builder: (builder) => loginScreen()));
     }else if(index == 4){
-      Navigator.push(context, MaterialPageRoute(builder: (builder) => ));
+      Navigator.push(context, MaterialPageRoute(builder: (builder) => changeUserNameScreen()));
     }
   }
 }
