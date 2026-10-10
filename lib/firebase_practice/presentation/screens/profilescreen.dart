@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_practice/firebase_practice/presentation/screens/registerscreen.dart';
 
 import '../widgets/container_widget.dart';
 import 'changepasswordscreen.dart';
@@ -33,15 +34,17 @@ class profileScreen extends StatelessWidget {
   }
   void onTapPressed(int index, BuildContext context){
     if(index == 0){
-      Navigator.push(context, MaterialPageRoute(builder: (builder) => changePasswordScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => changePasswordScreen()));
     }else if(index == 1){
-      Navigator.push(context, MaterialPageRoute(builder: (builder) => deleteAccountScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => deleteAccountScreen()));
     }else if(index == 2){
-      Navigator.push(context, MaterialPageRoute(builder: (builder) => logoutScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => logoutScreen()));
     }else if(index == 3){
-      Navigator.push(context, MaterialPageRoute(builder: (builder) => loginScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => loginScreen()));
     }else if(index == 4){
-      Navigator.push(context, MaterialPageRoute(builder: (builder) => changeUserNameScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => changeUserNameScreen()));
+    }else if(index == 5){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => registerScreen()));
     }
   }
 }
