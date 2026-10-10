@@ -21,7 +21,9 @@ class profileScreen extends StatelessWidget {
                 itemBuilder: (context, index){
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: ContainerWidget(heading: listoftitles[index],ontap: ,),
+                    child: ContainerWidget(heading: listoftitles[index],ontap: (){
+                      onTapPressed(index, context);
+                    },),
                   );
             }),
           )
