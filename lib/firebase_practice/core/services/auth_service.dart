@@ -35,6 +35,5 @@ class AuthService {
     AuthCredential authCredential = EmailAuthProvider.credential(email: email, password: currentpassword);
     await currentUser!.reauthenticateWithCredential(authCredential);
     await currentUser!.updatePassword(newpassword);
-
   }
 }
