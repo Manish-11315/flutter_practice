@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_project_practice/firebase_practice/presentation/bloc/fireevents.dart';
 
 import '../bloc/firebloc.dart';
 import '../bloc/firestates.dart';
@@ -48,7 +49,7 @@ class changePasswordScreen extends StatelessWidget {
               SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
-                  onTapRegister(context);
+                  onTapButtonAction(context: context, email: emailController.text, password:  passwordController.text, passwordConfirmation: reEnterPasswordController.text);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -80,4 +81,7 @@ class changePasswordScreen extends StatelessWidget {
     );
   }
 
+  void onTapButtonAction({required BuildContext context, required String email, required String password, required String passwordConfirmation}){
+    return BlocProvider.of<Firebloc>(context).add(updateUserPasswordEvent(email: email, currentPassword: password, newPassword: passwordConfirmation));
+  }
 }
