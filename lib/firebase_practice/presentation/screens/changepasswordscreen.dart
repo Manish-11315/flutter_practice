@@ -6,10 +6,13 @@ import '../bloc/firebloc.dart';
 import '../bloc/firestates.dart';
 import '../widgets/textfield.dart';
 import 'dashboardscreen.dart';
+
 class changePasswordScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController reEnterPasswordController = TextEditingController();
+  final TextEditingController reEnterPasswordController =
+      TextEditingController();
+
   changePasswordScreen({super.key});
 
   @override
@@ -50,7 +53,12 @@ class changePasswordScreen extends StatelessWidget {
               SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
-                  onTapButtonAction(context: context, email: emailController.text, password:  passwordController.text, passwordConfirmation: reEnterPasswordController.text);
+                  onTapButtonAction(
+                    context: context,
+                    email: emailController.text,
+                    password: passwordController.text,
+                    passwordConfirmation: reEnterPasswordController.text,
+                  );
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -71,18 +79,34 @@ class changePasswordScreen extends StatelessWidget {
         },
         listener: (context, states) {
           if (states is errorFireState) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(states.errormsg)));
-          }else if (states is sucessFireState) {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(states.errormsg)));
+          } else if (states is sucessFireState) {
             final blocvalue = BlocProvider.of<Firebloc>(context);
-            BlocProvider.value(value: blocvalue,child: dashBoard(),);
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> dashBoard()));
+            BlocProvider.value(value: blocvalue, child: dashBoard());
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => dashBoard()),
+            );
           }
         },
       ),
     );
   }
 
-  void onTapButtonAction({required BuildContext context, required String email, required String password, required String passwordConfirmation}){
-    return BlocProvider.of<Firebloc>(context).add(updateUserPasswordEvent(email: email, currentPassword: password, newPassword: passwordConfirmation));
+  void onTapButtonAction({
+    required BuildContext context,
+    required String email,
+    required String password,
+    required String passwordConfirmation,
+  }) {
+    return BlocProvider.of<Firebloc>(context).add(
+      updateUserPasswordEvent(
+        email: email,
+        currentPassword: password,
+        newPassword: passwordConfirmation,
+      ),
+    );
   }
 }
