@@ -5,6 +5,7 @@ import 'package:flutter_project_practice/firebase_practice/presentation/bloc/fir
 import '../bloc/firebloc.dart';
 import '../bloc/firestates.dart';
 import '../widgets/textfield.dart';
+import 'dashboardscreen.dart';
 class changePasswordScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -73,8 +74,8 @@ class changePasswordScreen extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(states.errormsg)));
           }else if (states is sucessFireState) {
             final blocvalue = BlocProvider.of<Firebloc>(context);
-            BlocProvider.value(value: blocvalue,child: ,);
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> ));
+            BlocProvider.value(value: blocvalue,child: dashBoard(),);
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> dashBoard()));
           }
         },
       ),
