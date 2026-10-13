@@ -73,8 +73,8 @@ class changePasswordScreen extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(states.errormsg)));
           }else if (states is sucessFireState) {
             final blocvalue = BlocProvider.of<Firebloc>(context);
-            BlocProvider.value(value: blocvalue,child: homeScreen(),);
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> homeScreen()));
+            BlocProvider.value(value: blocvalue,child: ,);
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> ));
           }
         },
       ),
