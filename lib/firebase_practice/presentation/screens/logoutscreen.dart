@@ -4,6 +4,24 @@ class logoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: Container(
+          child: Column(
+            children: [
+              Text("Logout Screen"),
+              GestureDetector(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.redAccent
+                  ),
+                  child: Text("Logout", style:  TextStyle(color: Colors.white),),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
