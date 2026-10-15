@@ -59,11 +59,10 @@ class Firebloc extends Bloc<fireEvents, fireStates> {
   void userlogoutEventHandler(logoutUserEvent event, Emitter<fireStates> emit)async{
     emit(loadingFireState());
     try{
-      final response = await logoutusecaseinstance.call();
-      emit(sucessFireState());
+      emit(logoutSuccessState());
 
     }catch(err){
-      emit(errorFireState(errormsg: err.toString()));
+      emit(logoutErrorState(errormessage: err.toString()));
     }
   }
   void userpasswordUpdateEventHandler(updateUserPasswordEvent event, Emitter<fireStates> emit)async{

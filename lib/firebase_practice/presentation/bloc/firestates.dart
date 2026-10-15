@@ -15,3 +15,12 @@ class errorFireState extends fireStates{
   final String errormsg;
   errorFireState({required this.errormsg});
 }
+
+class logoutSuccessState extends fireStates{}
+
+class logoutErrorState extends fireStates{
+  final String errormessage;
+  logoutErrorState({required this.errormessage});
+}
+
+class logoutLoadingState extends fireStates{}
