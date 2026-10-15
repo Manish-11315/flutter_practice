@@ -20,7 +20,7 @@ class changePasswordScreen extends StatelessWidget {
     return Scaffold(
       body: BlocConsumer<Firebloc, fireStates>(
         builder: (context, states) {
-          if (states is loadingFireState) {
+          if (states is changepasswordLoadingState) {
             return Center(child: CircularProgressIndicator());
           }
 
@@ -78,17 +78,12 @@ class changePasswordScreen extends StatelessWidget {
           );
         },
         listener: (context, states) {
-          if (states is errorFireState) {
+          if (states is changepasswordErrorState) {
             ScaffoldMessenger.of(
               context,
-            ).showSnackBar(SnackBar(content: Text(states.errormsg)));
-          } else if (states is sucessFireState) {
-            final blocvalue = BlocProvider.of<Firebloc>(context);
-            BlocProvider.value(value: blocvalue, child: dashBoard());
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => dashBoard()),
-            );
+            ).showSnackBar(SnackBar(content: Text(states.errormessage)));
+          } else if (states is changepasswordSucessState) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Password Changed Successfully")));
           }
         },
       ),

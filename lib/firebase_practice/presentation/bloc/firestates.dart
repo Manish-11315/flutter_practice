@@ -24,3 +24,12 @@ class logoutErrorState extends fireStates{
 }
 
 class logoutLoadingState extends fireStates{}
+
+class changepasswordLoadingState extends fireStates{}
+
+class changepasswordSucessState extends fireStates{}
+
+class changepasswordErrorState extends fireStates{
+  final String errormessage;
+  changepasswordErrorState({required this.errormessage});
+}
