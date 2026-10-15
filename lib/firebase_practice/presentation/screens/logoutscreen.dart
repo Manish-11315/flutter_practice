@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project_practice/firebase_practice/presentation/bloc/firebloc.dart';
 import 'package:flutter_project_practice/firebase_practice/presentation/bloc/fireevents.dart';
 import 'package:flutter_project_practice/firebase_practice/presentation/bloc/firestates.dart';
+import 'package:flutter_project_practice/firebase_practice/presentation/screens/loginscreen.dart';
 class logoutScreen extends StatelessWidget {
   const logoutScreen({super.key});
 
@@ -11,9 +12,7 @@ class logoutScreen extends StatelessWidget {
     return Scaffold(
       body: BlocConsumer<Firebloc, fireStates>(
         builder: (context, state){
-          if(state is logoutSuccessState){
-            return Center(child: Text("User Logged Out Successfully"),);
-          }else if(state is logoutErrorState){
+          if(state is logoutErrorState){
             return Center(child: Text("An Error Occurred while Logging Out : ${state.errormessage}"),);
           }else if(state is logoutLoadingState){
             return Center(child: CircularProgressIndicator());
@@ -45,7 +44,9 @@ class logoutScreen extends StatelessWidget {
           );
         },
         listener: (context, state){
-
+          if(state is logoutSuccessState){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => loginScreen()));
+          }
         },
       ),
     );
