@@ -11,11 +11,11 @@ class logoutScreen extends StatelessWidget {
     return Scaffold(
       body: BlocConsumer<Firebloc, fireStates>(
         builder: (context, state){
-          if(state is sucessFireState){
+          if(state is logoutSuccessState){
             return Center(child: Text("User Logged Out Successfully"),);
-          }else if(state is errorFireState){
-            return Center(child: Text("An Error Occurred while Logging Out : ${state.errormsg}"),);
-          }else if(state is loadingFireState){
+          }else if(state is logoutErrorState){
+            return Center(child: Text("An Error Occurred while Logging Out : ${state.errormessage}"),);
+          }else if(state is logoutLoadingState){
             return Center(child: CircularProgressIndicator());
           }
           return Center(
