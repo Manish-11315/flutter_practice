@@ -32,7 +32,7 @@ class changePasswordScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: textFieldWidget(
                   textEditingController: emailController,
-                  hintname: "Email",
+                  hintname: "Enter your Email",
                 ),
               ),
               SizedBox(height: 10),
@@ -40,7 +40,7 @@ class changePasswordScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: textFieldWidget(
                   textEditingController: passwordController,
-                  hintname: "Enter A Password",
+                  hintname: "Enter your current Password",
                 ),
               ),
               Padding(
@@ -90,12 +90,12 @@ class changePasswordScreen extends StatelessWidget {
     );
   }
 
-  void onTapButtonAction({
+  void onTapButtonAction ({
     required BuildContext context,
     required String email,
     required String password,
     required String passwordConfirmation,
-  }) {
+  }) async{
     return BlocProvider.of<Firebloc>(context).add(
       updateUserPasswordEvent(
         email: email,
