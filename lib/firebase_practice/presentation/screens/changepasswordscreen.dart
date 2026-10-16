@@ -5,7 +5,6 @@ import 'package:flutter_project_practice/firebase_practice/presentation/bloc/fir
 import '../bloc/firebloc.dart';
 import '../bloc/firestates.dart';
 import '../widgets/textfield.dart';
-import 'dashboardscreen.dart';
 
 class changePasswordScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -83,19 +82,21 @@ class changePasswordScreen extends StatelessWidget {
               context,
             ).showSnackBar(SnackBar(content: Text(states.errormessage)));
           } else if (states is changepasswordSucessState) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Password Changed Successfully")));
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Password Changed Successfully")),
+            );
           }
         },
       ),
     );
   }
 
-  void onTapButtonAction ({
+  void onTapButtonAction({
     required BuildContext context,
     required String email,
     required String password,
     required String passwordConfirmation,
-  }) async{
+  }) async {
     return BlocProvider.of<Firebloc>(context).add(
       updateUserPasswordEvent(
         email: email,
