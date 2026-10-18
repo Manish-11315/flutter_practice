@@ -19,6 +19,7 @@ class Firebloc extends Bloc<fireEvents, fireStates> {
   final Changeusernameusecase changeusernameusecaseinstance;
   final Changeuserpassword changeuserpasswordinstance;
   final Logoutusecase logoutusecaseinstance;
+  final FirebaseAuth firebaseAuthinstance;
 
   Firebloc({
     required this.loginusecaseinstance,
@@ -27,6 +28,7 @@ class Firebloc extends Bloc<fireEvents, fireStates> {
     required this.changeusernameusecaseinstance,
     required this.changeuserpasswordinstance,
     required this.logoutusecaseinstance,
+    required this.firebaseAuthinstance
   }) : super(initialFireState()){
     on<loginUserEvent>(userloginEventHandler);
     on<registerUserEvent>(userregisterEventHandler);
@@ -34,6 +36,7 @@ class Firebloc extends Bloc<fireEvents, fireStates> {
     on<updateUserPasswordEvent>(userpasswordUpdateEventHandler);
     on<updateUsernameEvent>(usernameUpdateEventHandler);
     on<deleteUserEvent>(userDeleteEventHandler);
+    on<getUserDetails>(getUserDetailsHandler);
   }
 
   void userloginEventHandler(loginUserEvent event, Emitter<fireStates> emit)async{
@@ -94,5 +97,8 @@ class Firebloc extends Bloc<fireEvents, fireStates> {
     }catch(err){
       emit(errorFireState(errormsg: err.toString()));
     }
+  }
+  void getUserDetailsHandler(getUserDetails event, Emitter<fireStates> emit){
+    emit();
   }
 }

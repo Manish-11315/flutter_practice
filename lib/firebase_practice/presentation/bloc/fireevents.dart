@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 abstract class fireEvents {}
 
 class loginUserEvent extends fireEvents{
@@ -30,4 +32,9 @@ class deleteUserEvent extends fireEvents{
   final String email;
   final String password;
   deleteUserEvent({required this.email, required this.password});
+}
+
+class getUserDetails extends fireEvents{
+  final FirebaseAuth firebaseAuthinstance;
+  getUserDetails({required this.firebaseAuthinstance});
 }

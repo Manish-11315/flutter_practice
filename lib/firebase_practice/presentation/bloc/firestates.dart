@@ -33,3 +33,18 @@ class changepasswordErrorState extends fireStates{
   final String errormessage;
   changepasswordErrorState({required this.errormessage});
 }
+
+class deleteaccountloadingState extends fireStates{}
+class deleteaccountsuccessState extends fireStates{}
+class deleteaccounterrorState extends fireStates{
+  final String errormsg;
+  deleteaccounterrorState({required this.errormsg});
+}
+
+class getdetailsloadingState extends fireStates{}
+class getdetailssuccessState extends fireStates{}
+class getdetailserrorState extends fireStates{
+  final String errormsg;
+  getdetailserrorState({required this.errormsg});
+}
+
