@@ -69,7 +69,7 @@ class Firebloc extends Bloc<fireEvents, fireStates> {
     emit(changepasswordLoadingState());
     try{
       final response = await changeuserpasswordinstance.call(email: event.email, currentpassword: event.currentPassword, newpassword:  event.newPassword);
-      emit(sucessFireState());
+      emit(changepasswordSucessState());
 
     }catch(err){
       emit(errorFireState(errormsg: err.toString()));
