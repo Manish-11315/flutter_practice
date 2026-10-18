@@ -82,6 +82,7 @@ class changePasswordScreen extends StatelessWidget {
               context,
             ).showSnackBar(SnackBar(content: Text(states.errormessage)));
           } else if (states is changepasswordSucessState) {
+            Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text("Password Changed Successfully")),
             );

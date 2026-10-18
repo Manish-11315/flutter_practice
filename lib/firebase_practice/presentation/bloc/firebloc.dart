@@ -72,7 +72,7 @@ class Firebloc extends Bloc<fireEvents, fireStates> {
       emit(changepasswordSucessState());
 
     }catch(err){
-      emit(errorFireState(errormsg: err.toString()));
+      emit(changepasswordErrorState(errormessage: err.toString()));
     }
   }
   void usernameUpdateEventHandler(updateUsernameEvent event, Emitter<fireStates> emit)async{
