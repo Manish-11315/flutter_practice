@@ -34,7 +34,7 @@ class deleteAccountScreen extends StatelessWidget {
     );
   }
 
-  void onTapDeleteAccount(){
+  void onTapDeleteAccount(BuildContext context){
     BlocProvider.of<Firebloc>(context).add(deleteUserEvent(email: email, password: password));
   }
 }

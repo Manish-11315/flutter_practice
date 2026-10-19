@@ -11,6 +11,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:dio/dio.dart' as _i361;
+import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -101,15 +102,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i502.Registerusecase>(
       () => _i502.Registerusecase(userRepoinstance: gh<_i597.UserRepo>()),
     );
-    gh.factory<_i211.Userbloc>(
-      () => _i211.Userbloc(
-        fetchsingleuserUsecase: gh<_i341.FetchsingleuserUsecase>(),
-        fetchallusersUsecase: gh<_i455.FetchallusersUsecase>(),
-      ),
-    );
-    gh.factory<_i513.Postbloc>(
-      () => _i513.Postbloc(getuserusecaseinstance: gh<_i842.Getuserusecase>()),
-    );
     gh.factory<_i724.Firebloc>(
       () => _i724.Firebloc(
         loginusecaseinstance: gh<_i454.Loginusecase>(),
@@ -118,7 +110,17 @@ extension GetItInjectableX on _i174.GetIt {
         changeusernameusecaseinstance: gh<_i616.Changeusernameusecase>(),
         changeuserpasswordinstance: gh<_i74.Changeuserpassword>(),
         logoutusecaseinstance: gh<_i964.Logoutusecase>(),
+        firebaseAuthinstance: gh<_i59.FirebaseAuth>(),
       ),
+    );
+    gh.factory<_i211.Userbloc>(
+      () => _i211.Userbloc(
+        fetchsingleuserUsecase: gh<_i341.FetchsingleuserUsecase>(),
+        fetchallusersUsecase: gh<_i455.FetchallusersUsecase>(),
+      ),
+    );
+    gh.factory<_i513.Postbloc>(
+      () => _i513.Postbloc(getuserusecaseinstance: gh<_i842.Getuserusecase>()),
     );
     return this;
   }

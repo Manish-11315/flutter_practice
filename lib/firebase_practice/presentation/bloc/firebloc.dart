@@ -99,6 +99,11 @@ class Firebloc extends Bloc<fireEvents, fireStates> {
     }
   }
   void getUserDetailsHandler(getUserDetails event, Emitter<fireStates> emit){
-    emit();
+    emit(getdetailsloadingState());
+    try{
+
+    }catch (err){
+      emit(getdetailserrorState(errormsg: err.toString()));
+    }
   }
 }
