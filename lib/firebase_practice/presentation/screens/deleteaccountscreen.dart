@@ -7,7 +7,7 @@ import 'package:flutter_project_practice/firebase_practice/presentation/bloc/fir
 class deleteAccountScreen extends StatelessWidget {
   final String email;
   final String password;
-  deleteAccountScreen({super.key});
+  deleteAccountScreen({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {
